@@ -1,0 +1,23 @@
+{
+  "name": "rg-cultural",
+  "version": "1.0.0",
+  "description": "Projeto de divulgação artística e cultural da cidade de taubaté no qual é possível cadastrar eventos, artistas e história local e seja de fácil acesso a todas as pessoas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wendryl/rg-cultural.git"
+  },
+  "author": "Fatec Taubate",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/Wendryl/rg-cultural/issues"
+  },
+  "homepage": "https://github.com/Wendryl/rg-cultural#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "jquery": "^3.6.0"
+  }
+}
