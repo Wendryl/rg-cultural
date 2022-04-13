@@ -1,0 +1,19 @@
+body{
+    padding-top: 60px;
+    background: #0047ab;
+}
+
+.card{
+    box-shadow: 3px 6px 8px 3px rgba(0, 0, 0, 0.3)
+}
+
+.form-text{
+    color: grey;
+    
+}
+
+a{
+    color: white;
+}
+
+

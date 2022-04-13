@@ -1,0 +1,11 @@
+{
+    "name": "fatec-taubate/rg-cultural",
+    "description": "Projeto de divulgação artística e cultural da cidade de taubaté no qual é possível cadastrar eventos, artistas e história local e seja de fácil acesso a todas as pessoas.",
+    "type": "project",
+    "require": {
+        "twbs/bootstrap": "5",
+        "components/jquery": "9999999-dev"
+    },
+    "license": "Unlicense",
+    "minimum-stability": "dev"
+}
