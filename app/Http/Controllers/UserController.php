@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -50,7 +52,7 @@ class UserController extends Controller
             $user = new User([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'password' => $request->input('password'),
+                'password' => Hash::make($request->input('password')),
                 'phone' => $request->input('phone'),
             ]);
 
@@ -158,6 +160,36 @@ class UserController extends Controller
             ], 200);
 
         } catch (Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function login(Request $request)
+    {
+        try {
+
+            if((is_null($request->phone) && is_null($request->email)) || is_null($request->password)) {
+                return response()->json([
+                    'message' => 'Informe a senha e e-mail para se autenticar'
+                ], 400);
+            }
+
+            /* $auth_result = Auth::attempt(['email' => $request->email, 'password' => $request->password]) || */
+            /*     Auth::attempt(['phone'=> $request->phone, 'password' => $request->password]); */
+            $auth_result = Auth::attempt($request->only('email', 'password'));
+
+            if(!$auth_result)
+                return response()->json([
+                    'message' => 'Usuário ou senha incorretos'
+                ], 401);
+
+            return response()->json([
+                'message' => 'Usuário autenticado com sucesso!'
+            ], 200);
+
+        } catch(Exception $e) {
             return response()->json([
                 'error' => $e->getMessage()
             ], 500);
