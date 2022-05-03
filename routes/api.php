@@ -25,22 +25,22 @@ Route::controller(UserController::class)->group(function() {
     Route::get('/users', 'index');
     Route::get('/users/{id}', 'show');
     Route::post('/users', 'store');
-    Route::put('/users/{id}', 'update');
-    Route::delete('/users/{id}', 'destroy');
+    Route::post('/users/{id}/update', 'update'); // Change all update POST methods to PUT after deploy in another hosting service
+    Route::post('/users/{id}/delete', 'destroy'); // Change all delete POST methods to PUT after deploy in another hosting service
 });
 
 Route::controller(CategoryController::class)->group(function() {
     Route::get('/categories', 'index');
     Route::get('/categories/{id}', 'show');
     Route::post('/categories', 'store');
-    Route::put('/categories/{id}', 'update');
-    Route::delete('/categories/{id}', 'destroy');
+    Route::post('/categories/{id}/update', 'update');
+    Route::post('/categories/{id}/delete', 'destroy');
 });
 
 Route::controller(ActivityController::class)->group(function() {
     Route::get('/activities', 'index');
     Route::get('/activities/{id}', 'show');
     Route::post('/activities', 'store');
-    Route::put('/activities/{id}', 'update');
-    Route::delete('/activities/{id}', 'destroy');
+    Route::post('/activities/{id}/update', 'update');
+    Route::post('/activities/{id}/delete', 'destroy');
 });
