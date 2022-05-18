@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -186,7 +187,7 @@ class UserController extends Controller
                 ], 401);
 
             return response()->json([
-                'message' => 'Usuário autenticado com sucesso!'
+                'token' => Str::random(64)
             ], 200);
 
         } catch(Exception $e) {
