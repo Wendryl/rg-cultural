@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ActivityController extends Controller
 {
@@ -17,7 +18,12 @@ class ActivityController extends Controller
     {
         try {
 
-            $activities = Activity::simplePaginate($request->query('pageSize'));
+            $pageSize = $request->query('pageSize');
+
+            if ($pageSize != 0)
+                $activities = DB::table('activities')->orderBy('created_at')->paginate($pageSize);
+            else
+                $activities = DB::table('activities')->orderBy('created_at')->get();
 
             return response()->json($activities, 200);
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -16,6 +17,13 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         try {
+
+            $pageSize = $request->query('pageSize');
+
+            if ($pageSize != 0)
+                $categories = DB::table('categories')->orderBy('created_at')->paginate($pageSize);
+            else
+                $categories = DB::table('categories')->orderBy('created_at')->get();
 
             $categories = Category::simplePaginate($request->query('pageSize'));
 

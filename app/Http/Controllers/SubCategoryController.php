@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SubCategory;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class SubCategoryController extends Controller
 {
@@ -16,6 +17,13 @@ class SubCategoryController extends Controller
     public function index(Request $request)
     {
         try {
+
+            $pageSize = $request->query('pageSize');
+
+            if ($pageSize != 0)
+                $sub_categories = DB::table('sub_categories')->orderBy('created_at')->paginate($pageSize);
+            else
+                $sub_categories = DB::table('sub_categories')->orderBy('created_at')->get();
 
             $sub_categories = SubCategory::simplePaginate($request->query('pageSize'));
 

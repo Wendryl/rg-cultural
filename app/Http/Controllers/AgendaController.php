@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Agenda;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class AgendaController extends Controller
 {
@@ -12,7 +13,12 @@ class AgendaController extends Controller
     {
         try {
 
-            $agendas = Agenda::simplePaginate($request->query('pageSize'));
+            $pageSize = $request->query('pageSize');
+
+            if ($pageSize != 0)
+                $agendas = DB::table('agendas')->orderBy('created_at')->paginate($pageSize);
+            else
+                $agendas = DB::table('agendas')->orderBy('created_at')->get();
 
             return response()->json($agendas, 200);
 
