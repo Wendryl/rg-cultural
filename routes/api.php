@@ -3,6 +3,8 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\CulturalColumnController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +53,22 @@ Route::controller(SubCategoryController::class)->group(function() {
 });
 
 Route::controller(ActivityController::class)->group(function() {
+    Route::get('/activities', 'index');
+    Route::get('/activities/{id}', 'show');
+    Route::post('/activities', 'store');
+    Route::put('/activities/{id}', 'update');
+    Route::delete('/activities/{id}', 'destroy');
+});
+
+Route::controller(AgendaController::class)->group(function() {
+    Route::get('/agendas', 'index');
+    Route::get('/agendas/{id}', 'show');
+    Route::post('/agendas', 'store');
+    Route::put('/agendas/{id}', 'update');
+    Route::delete('/agendas/{id}', 'destroy');
+});
+
+Route::controller(CulturalColumnController::class)->group(function() {
     Route::get('/activities', 'index');
     Route::get('/activities/{id}', 'show');
     Route::post('/activities', 'store');
