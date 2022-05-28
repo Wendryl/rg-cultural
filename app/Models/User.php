@@ -24,7 +24,7 @@ class User extends Authenticatable
         'password',
         'token',
         'access',
-        'profilePicture',
+        'profile_picture',
         'street',
         'number',
         'neighborhood',
