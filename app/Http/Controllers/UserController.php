@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -20,7 +22,12 @@ class UserController extends Controller
     {
         try {
 
-            $users = User::simplePaginate($request->query('pageSize'));
+            $pageSize = $request->query('pageSize');
+
+            if ($pageSize != 0)
+                $users = DB::table('users')->orderBy('created_at')->paginate($pageSize);
+            else
+                $users = DB::table('users')->orderBy('created_at')->get();
 
             return response()->json($users, 200);
 
@@ -55,6 +62,7 @@ class UserController extends Controller
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
                 'phone' => $request->input('phone'),
+                'access' => (new DateTime())->format('Y-m-d\TH:i:s.u')
             ]);
 
             $user->save();
