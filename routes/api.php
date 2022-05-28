@@ -69,9 +69,9 @@ Route::controller(AgendaController::class)->group(function() {
 });
 
 Route::controller(CulturalColumnController::class)->group(function() {
-    Route::get('/activities', 'index');
-    Route::get('/activities/{id}', 'show');
-    Route::post('/activities', 'store');
-    Route::put('/activities/{id}', 'update');
-    Route::delete('/activities/{id}', 'destroy');
+    Route::get('/cultural-columns', 'index');
+    Route::get('/cultural-columns/{id}', 'show');
+    Route::post('/cultural-columns', 'store');
+    Route::put('/cultural-columns/{id}', 'update');
+    Route::delete('/cultural-columns/{id}', 'destroy');
 });
