@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,14 @@ Route::controller(CategoryController::class)->group(function() {
     Route::post('/categories', 'store');
     Route::post('/categories/{id}/update', 'update');
     Route::post('/categories/{id}/delete', 'destroy');
+});
+
+Route::controller(SubCategoryController::class)->group(function() {
+    Route::get('/sub-categories', 'index');
+    Route::get('/sub-categories/{id}', 'show');
+    Route::post('/sub-categories', 'store');
+    Route::post('/sub-categories/{id}/update', 'update');
+    Route::post('/sub-categories/{id}/delete', 'destroy');
 });
 
 Route::controller(ActivityController::class)->group(function() {
