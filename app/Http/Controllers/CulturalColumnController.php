@@ -39,10 +39,8 @@ class CulturalColumnController extends Controller
 
             $agenda = new CulturalColumn([
                 'title' => $request->input('title'),
-                'date' => $request->input('date'),
-                'link' => $request->input('link'),
-                'description' => $request->input('description'),
-                'location' => $request->input('location')
+                'img_url' => $request->input('img_url'),
+                'biography' => $request->input('biography'),
             ]);
 
             $agenda->save();
@@ -65,7 +63,7 @@ class CulturalColumnController extends Controller
 
             if($agenda == null)
                 return response()->json([
-                    'message' => 'CulturalColumn não encontrada'
+                    'message' => 'Coluna não encontrada'
                 ], 404);
 
             return response()->json($agenda, 200);
@@ -90,14 +88,12 @@ class CulturalColumnController extends Controller
 
             if($agenda == null)
                 return response()->json([
-                    'message' => 'CulturalColumn não encontrada'
+                    'message' => 'Coluna não encontrada'
                 ], 404);
 
             $agenda['title'] = $request->input('title');
-            $agenda['date'] = $request->input('date');
-            $agenda['link'] = $request->input('link');
-            $agenda['description'] = $request->input('description');
-            $agenda['location'] = $request->input('location');
+            $agenda['img_url'] = $request->input('img_url');
+            $agenda['biography'] = $request->input('biography');
             $agenda->save();
 
             return response()->json($agenda, 200);
