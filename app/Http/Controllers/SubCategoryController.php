@@ -91,6 +91,26 @@ class SubCategoryController extends Controller
         }
     }
 
+    public function findByCategory(int $id)
+    {
+        try {
+
+            $sub_categories = SubCategory::where('category_id', $id)->get();
+
+            if($sub_categories == null)
+                return response()->json([
+                    'message' => 'Nenhuma sub-categoria não encontrada'
+                ], 404);
+
+            return response()->json($sub_categories, 200);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

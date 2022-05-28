@@ -27,8 +27,8 @@ Route::controller(UserController::class)->group(function() {
     Route::get('/users/{id}', 'show');
     Route::get('/users/by-email/{email}', 'findByEmail');
     Route::post('/users', 'store');
-    Route::post('/users/{id}/update', 'update'); // Change all update POST methods to PUT after deploy in another hosting service
-    Route::post('/users/{id}/delete', 'destroy'); // Change all delete POST methods to PUT after deploy in another hosting service
+    Route::put('/users/{id}', 'update'); // Change all update POST methods to PUT after deploy in another hosting service
+    Route::delete('/users/{id}', 'destroy'); // Change all delete POST methods to PUT after deploy in another hosting service
     Route::post('/users/login', 'login');
     Route::get('/users/logout/{email}', 'logout');
 });
@@ -37,22 +37,23 @@ Route::controller(CategoryController::class)->group(function() {
     Route::get('/categories', 'index');
     Route::get('/categories/{id}', 'show');
     Route::post('/categories', 'store');
-    Route::post('/categories/{id}/update', 'update');
-    Route::post('/categories/{id}/delete', 'destroy');
+    Route::put('/categories/{id}', 'update');
+    Route::delete('/categories/{id}', 'destroy');
 });
 
 Route::controller(SubCategoryController::class)->group(function() {
     Route::get('/sub-categories', 'index');
     Route::get('/sub-categories/{id}', 'show');
+    Route::get('/sub-categories-by-category/{id}', 'findByCategory');
     Route::post('/sub-categories', 'store');
-    Route::post('/sub-categories/{id}/update', 'update');
-    Route::post('/sub-categories/{id}/delete', 'destroy');
+    Route::put('/sub-categories/{id}', 'update');
+    Route::delete('/sub-categories/{id}', 'destroy');
 });
 
 Route::controller(ActivityController::class)->group(function() {
     Route::get('/activities', 'index');
     Route::get('/activities/{id}', 'show');
     Route::post('/activities', 'store');
-    Route::post('/activities/{id}/update', 'update');
-    Route::post('/activities/{id}/delete', 'destroy');
+    Route::put('/activities/{id}', 'update');
+    Route::delete('/activities/{id}', 'destroy');
 });
