@@ -14,6 +14,13 @@ class Activity extends Model
         'description',
         'value',
         'value_unity',
+        'art_picture_url',
+        'experience',
+        'facebook_url',
+        'instagram_url',
+        'youtube_url',
+        'type',
+        'approved'
     ];
 
     public function category()
