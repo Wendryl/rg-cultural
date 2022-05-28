@@ -24,10 +24,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(UserController::class)->group(function() {
     Route::get('/users', 'index');
     Route::get('/users/{id}', 'show');
+    Route::get('/users/by-email/{email}', 'findByEmail');
     Route::post('/users', 'store');
     Route::post('/users/{id}/update', 'update'); // Change all update POST methods to PUT after deploy in another hosting service
     Route::post('/users/{id}/delete', 'destroy'); // Change all delete POST methods to PUT after deploy in another hosting service
     Route::post('/users/login', 'login');
+    Route::get('/users/logout/{email}', 'logout');
 });
 
 Route::controller(CategoryController::class)->group(function() {

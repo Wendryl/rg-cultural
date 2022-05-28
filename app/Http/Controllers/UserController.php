@@ -103,6 +103,26 @@ class UserController extends Controller
         }
     }
 
+    public function findByEmail(string $email)
+    {
+        try {
+
+            $user = User::where('email', $email)->get()[0];
+
+            if($user == null)
+                return response()->json([
+                    'message' => 'Usuário não encontrado'
+                ], 404);
+
+            return response()->json($user, 200);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -185,8 +205,6 @@ class UserController extends Controller
                 ], 400);
             }
 
-            /* $auth_result = Auth::attempt(['email' => $request->email, 'password' => $request->password]) || */
-            /*     Auth::attempt(['phone'=> $request->phone, 'password' => $request->password]); */
             $auth_result = Auth::attempt($request->only('email', 'password'));
 
             if(!$auth_result)
@@ -194,8 +212,32 @@ class UserController extends Controller
                     'message' => 'Usuário ou senha incorretos'
                 ], 401);
 
+            $user = User::where('email', $request->email)->get()[0];
+            $token = Hash::make(time() . $user->id);
+            $user->token = $token;
+            $user->save();
+
             return response()->json([
-                'token' => Str::random(64)
+                'token' => $token
+            ], 200);
+
+        } catch(Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+
+            $user = User::where('email', $request->email)->get()[0];
+            $user->token = null;
+            $user->save();
+
+            return response()->json([
+                'message' => 'Logout realizado com sucesso!'
             ], 200);
 
         } catch(Exception $e) {
