@@ -61,8 +61,15 @@ class UserController extends Controller
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
+                'type' => '0',
                 'phone' => $request->input('phone'),
-                'access' => (new DateTime())->format('Y-m-d\TH:i:s.u')
+                'access' => (new DateTime())->format('Y-m-d\TH:i:s.u'),
+                'street' => $request->input('street'),
+                'number' => $request->input('number'),
+                'neighborhood' => $request->input('neighborhood'),
+                'city' => $request->input('city'),
+                'uf' => $request->input('uf'),
+                'type' => $request->input('type')
             ]);
 
             $user->save();
@@ -153,7 +160,15 @@ class UserController extends Controller
                 ], 404);
 
             $user['name'] = $request->input('name');
+            $user['email'] = $request->input('email');
             $user['phone'] = $request->input('phone');
+            $user['access'] = (new DateTime())->format('Y-m-d\TH:i:s.u');
+            $user['street'] = $request->input('street');
+            $user['number'] = $request->input('number');
+            $user['neighborhood'] = $request->input('neighborhood');
+            $user['city'] = $request->input('city');
+            $user['uf'] = $request->input('uf');
+            $user['type'] = $request->input('type');
             $user->save();
 
             return response()->json($user, 200);
