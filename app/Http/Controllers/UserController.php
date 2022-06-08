@@ -232,9 +232,7 @@ class UserController extends Controller
             $user->token = $token;
             $user->save();
 
-            return response()->json([
-                'token' => $token
-            ], 200);
+            return response([ 'token' => $token ], 200);
 
         } catch(Exception $e) {
             return response()->json([

@@ -6,7 +6,6 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\CulturalColumnController;
 use App\Http\Controllers\SubCategoryController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,22 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::controller(UserController::class)->group(function() {
+Route::middleware('auth')->controller(UserController::class)->group(function() {
     Route::get('/users', 'index');
     Route::get('/users/{id}', 'show');
     Route::get('/users/by-email/{email}', 'findByEmail');
     Route::post('/users', 'store');
     Route::put('/users/{id}', 'update'); // Change all update POST methods to PUT after deploy in another hosting service
     Route::delete('/users/{id}', 'destroy'); // Change all delete POST methods to PUT after deploy in another hosting service
-    Route::post('/users/login', 'login');
     Route::get('/users/logout/{email}', 'logout');
+    Route::post('/users/login', 'login')->withoutMiddleware('auth');
 });
 
-Route::controller(CategoryController::class)->group(function() {
+Route::middleware('auth')->controller(CategoryController::class)->group(function() {
     Route::get('/categories', 'index');
     Route::get('/categories/{id}', 'show');
     Route::post('/categories', 'store');
@@ -43,7 +38,7 @@ Route::controller(CategoryController::class)->group(function() {
     Route::delete('/categories/{id}', 'destroy');
 });
 
-Route::controller(SubCategoryController::class)->group(function() {
+Route::middleware('auth')->controller(SubCategoryController::class)->group(function() {
     Route::get('/sub-categories', 'index');
     Route::get('/sub-categories/{id}', 'show');
     Route::get('/sub-categories-by-category/{id}', 'findByCategory');
@@ -52,7 +47,7 @@ Route::controller(SubCategoryController::class)->group(function() {
     Route::delete('/sub-categories/{id}', 'destroy');
 });
 
-Route::controller(ActivityController::class)->group(function() {
+Route::middleware('auth')->controller(ActivityController::class)->group(function() {
     Route::get('/activities', 'index');
     Route::get('/activities/{id}', 'show');
     Route::post('/activities', 'store');
@@ -60,7 +55,7 @@ Route::controller(ActivityController::class)->group(function() {
     Route::delete('/activities/{id}', 'destroy');
 });
 
-Route::controller(AgendaController::class)->group(function() {
+Route::middleware('auth')->controller(AgendaController::class)->group(function() {
     Route::get('/agendas', 'index');
     Route::get('/agendas/{id}', 'show');
     Route::post('/agendas', 'store');
@@ -68,7 +63,7 @@ Route::controller(AgendaController::class)->group(function() {
     Route::delete('/agendas/{id}', 'destroy');
 });
 
-Route::controller(CulturalColumnController::class)->group(function() {
+Route::middleware('auth')->controller(CulturalColumnController::class)->group(function() {
     Route::get('/cultural-columns', 'index');
     Route::get('/cultural-columns/{id}', 'show');
     Route::post('/cultural-columns', 'store');
