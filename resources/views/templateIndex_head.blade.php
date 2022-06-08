@@ -9,7 +9,6 @@
         -->
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
         <link rel= "stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="shortcut-icon" type="image/jpg" href='../../assets/img/favicon.ico'>
 
         @yield('head')
     </head>
