@@ -25,9 +25,9 @@ class UserController extends Controller
             $pageSize = $request->query('pageSize');
 
             if ($pageSize != 0)
-                $users = DB::table('users')->orderBy('created_at')->paginate($pageSize);
+                $users = User::orderBy('created_at')->paginate($pageSize);
             else
-                $users = DB::table('users')->orderBy('created_at')->get();
+                $users = User::orderBy('created_at')->get();
 
             return response()->json($users, 200);
 
@@ -114,7 +114,7 @@ class UserController extends Controller
     {
         try {
 
-            $user = User::where('email', $email)->get()[0];
+            $user = User::where('email', $email)->first();
 
             if($user == null)
                 return response()->json([
