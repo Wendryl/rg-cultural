@@ -76,7 +76,8 @@ class UserController extends Controller
 
             $user->password = Hash::make($data->password);
 
-            $user->profile_picture = $this->_saveProfilePic($request, $data->name);
+            if (!is_null($request->file('profile_picture')))
+                $user->profile_picture = $this->_saveProfilePic($request, $data->name);
 
             $user->save();
 
