@@ -72,9 +72,3 @@ Route::middleware('auth')->controller(CulturalColumnController::class)->group(fu
     Route::put('/cultural-columns/{id}', 'update');
     Route::delete('/cultural-columns/{id}', 'destroy');
 });
-
-Route::get('/updateapp', function()
-{
-    Artisan::call('dump-autoload');
-    echo 'dump-autoload complete';
-});
