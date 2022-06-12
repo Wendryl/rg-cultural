@@ -7,8 +7,10 @@ use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -73,9 +75,8 @@ class UserController extends Controller
             ]);
 
             $user->password = Hash::make($data->password);
-            $pic_file = $request->file('profile_picture');
-            $user->profile_picture = $pic_file
-                 ->storeAs('upload/profile-pics', Str::slug($data->name) . '.' . $pic_file->extension(), ['disk' => 'public']);
+
+            $user->profile_picture = $this->_saveProfilePic($request, $data->name);
 
             $user->save();
 
@@ -87,6 +88,15 @@ class UserController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+
+    private function _saveProfilePic(Request $request, $user_name): string
+    {
+        $img_path = $request->file('profile_picture');
+        $save_path = 'upload/profile-pics/' . Str::slug($user_name) . '.jpg';
+        $resized_img = Image::make($img_path)->fit(300);
+        $resized_img->save($save_path);
+        return $save_path;
     }
 
     /**
@@ -166,14 +176,38 @@ class UserController extends Controller
 
             $user['name'] = $request->input('name');
             $user['email'] = $request->input('email');
-            $user['phone'] = $request->input('phone');
+            $user['phone'] = $request->input('phone') ?? null;
             $user['access'] = (new DateTime())->format('Y-m-d\TH:i:s.u');
-            $user['street'] = $request->input('street');
-            $user['number'] = $request->input('number');
-            $user['neighborhood'] = $request->input('neighborhood');
-            $user['city'] = $request->input('city');
-            $user['uf'] = $request->input('uf');
-            $user['type'] = $request->input('type');
+            $user['street'] = $request->input('street') ?? null;
+            $user['number'] = $request->input('number') ?? null;
+            $user['neighborhood'] = $request->input('neighborhood') ?? null;
+            $user['city'] = $request->input('city') ?? null;
+            $user['uf'] = $request->input('uf') ?? null;
+            $user->save();
+
+            return response()->json($user, 200);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+
+    public function updateProfilePicture(int $id, Request $request)
+    {
+        try {
+
+            $user = User::find($id);
+
+            if($user == null)
+                return response()->json([
+                    'message' => 'Usuário não encontrado'
+                ], 404);
+
+            $user->profile_picture = $this->_saveProfilePic($request, $user->name);
+
             $user->save();
 
             return response()->json($user, 200);

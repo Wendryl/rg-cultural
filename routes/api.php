@@ -24,8 +24,9 @@ Route::middleware('auth')->controller(UserController::class)->group(function() {
     Route::get('/users/{id}', 'show');
     Route::get('/users/by-email/{email}', 'findByEmail');
     Route::post('/users', 'store')->withoutMiddleware('auth');
-    Route::put('/users/{id}', 'update'); // Change all update POST methods to PUT after deploy in another hosting service
-    Route::delete('/users/{id}', 'destroy'); // Change all delete POST methods to PUT after deploy in another hosting service
+    Route::put('/users/{id}', 'update');
+    Route::post('/users/{id}/profile-picture', 'updateProfilePicture');
+    Route::delete('/users/{id}', 'destroy');
     Route::get('/users/logout/{email}', 'logout');
     Route::post('/users/login', 'login')->withoutMiddleware('auth');
 });
