@@ -57,21 +57,25 @@ class UserController extends Controller
     {
         try {
 
+            $data = json_decode($request->input('data'));
+
             $user = new User([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
+                'name' => $data->name,
+                'email' => $data->email,
                 'type' => '0',
-                'phone' => $request->input('phone'),
+                'phone' => $data->phone ?? null,
                 'access' => (new DateTime())->format('Y-m-d\TH:i:s.u'),
-                'street' => $request->input('street'),
-                'number' => $request->input('number'),
-                'neighborhood' => $request->input('neighborhood'),
-                'city' => $request->input('city'),
-                'uf' => $request->input('uf'),
-                'type' => $request->input('type')
+                'street' => $data->street ?? null,
+                'number' => $data->number ?? null,
+                'neighborhood' => $data->neighborhood ?? null,
+                'city' => $data->city ?? null,
+                'uf' => $data->uf ?? null
             ]);
 
-            $user->password = Hash::make($request->input('password'));
+            $user->password = Hash::make($data->password);
+            $pic_file = $request->file('profile_picture');
+            $user->profile_picture = $pic_file
+                 ->storeAs('upload/profile-pics', Str::slug($data->name) . '.' . $pic_file->extension(), ['disk' => 'public']);
 
             $user->save();
 
