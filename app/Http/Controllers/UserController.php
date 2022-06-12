@@ -60,7 +60,6 @@ class UserController extends Controller
             $user = new User([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
                 'type' => '0',
                 'phone' => $request->input('phone'),
                 'access' => (new DateTime())->format('Y-m-d\TH:i:s.u'),
@@ -71,6 +70,8 @@ class UserController extends Controller
                 'uf' => $request->input('uf'),
                 'type' => $request->input('type')
             ]);
+
+            $user->password = Hash::make($request->input('password'));
 
             $user->save();
 
