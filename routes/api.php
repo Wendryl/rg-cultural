@@ -7,6 +7,7 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\CulturalColumnController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,4 +71,10 @@ Route::middleware('auth')->controller(CulturalColumnController::class)->group(fu
     Route::post('/cultural-columns', 'store');
     Route::put('/cultural-columns/{id}', 'update');
     Route::delete('/cultural-columns/{id}', 'destroy');
+});
+
+Route::get('/updateapp', function()
+{
+    Artisan::call('dump-autoload');
+    echo 'dump-autoload complete';
 });
