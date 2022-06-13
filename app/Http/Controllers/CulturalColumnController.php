@@ -47,7 +47,7 @@ class CulturalColumnController extends Controller
             ]);
 
             if (!is_null($request->file('picture')))
-                $agenda->img_url = $this->_savePicture($request, $data->name);
+                $agenda->img_url = $this->_savePicture($request, $data->title);
 
             $agenda->save();
 
