@@ -61,6 +61,8 @@ class UserController extends Controller
 
             $data = json_decode($request->input('data'));
 
+            $this->_validateUser($data);
+
             $user = new User([
                 'name' => $data->name,
                 'email' => $data->email,
@@ -87,17 +89,8 @@ class UserController extends Controller
             return response()->json([
                 'message' => 'Erro ao cadastrar usuário',
                 'error' => $e->getMessage()
-            ], 500);
+            ], 400);
         }
-    }
-
-    private function _saveProfilePic(Request $request, $user_name): string
-    {
-        $img_path = $request->file('profile_picture');
-        $save_path = 'upload/profile-pics/' . Str::slug($user_name) . '.jpg';
-        $resized_img = Image::make($img_path)->fit(300);
-        $resized_img->save($save_path);
-        return $save_path;
     }
 
     /**
@@ -191,7 +184,7 @@ class UserController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'error' => $e->getMessage()
-            ], 500);
+            ], 400);
         }
     }
 
@@ -298,5 +291,32 @@ class UserController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+
+    private function _saveProfilePic(Request $request, $user_name): string
+    {
+        $img_path = $request->file('profile_picture');
+        $save_path = 'upload/profile-pics/' . Str::slug($user_name) . '.jpg';
+        $resized_img = Image::make($img_path)->fit(300);
+        $resized_img->save($save_path);
+        return $save_path;
+    }
+
+    private function _validateUser($user_data)
+    {
+        if (!property_exists($user_data, 'name'))
+            throw new Exception('O campo nome é obrigatório');
+
+        if (!property_exists($user_data, 'email'))
+            throw new Exception('O campo e-mail é obrigatório');
+
+        if (!property_exists($user_data, 'password'))
+            throw new Exception('O campo senha é obrigatório');
+
+        $user = User::where('email', '=', $user_data->email)->get();
+
+        if (count($user) > 0)
+            throw new Exception('Este e-mail já está sendo utilizado');
+
     }
 }
