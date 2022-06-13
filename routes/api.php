@@ -70,5 +70,6 @@ Route::middleware('auth')->controller(CulturalColumnController::class)->group(fu
     Route::get('/cultural-columns/{id}', 'show');
     Route::post('/cultural-columns', 'store');
     Route::put('/cultural-columns/{id}', 'update');
+    Route::post('/cultural-columns/{id}/picture', 'updateColumnPicture');
     Route::delete('/cultural-columns/{id}', 'destroy');
 });
