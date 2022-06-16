@@ -25,6 +25,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/home', function () {
+    return view('perfil');
+});
+
 Route::get('/registrar', function () {
     return view('cadastro');
 });

@@ -20,4 +20,5 @@
         @include('partials.rodape_governo')
 
     </body>
+    @stack('scripts')
 </html>

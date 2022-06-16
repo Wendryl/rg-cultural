@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class UserController extends Controller
 {
@@ -263,7 +264,11 @@ class UserController extends Controller
             $user->token = $token;
             $user->save();
 
-            return response([ 'token' => $token ], 200);
+            return response([
+                'token' => $token,
+                'user' => $user
+            ], 200);
+            /* return response('', 204)->cookie(new Cookie('auth_token', $token)); */ // TODO - Use secure http only token implementation instead of sessionStorage
 
         } catch(Exception $e) {
             return response()->json([
@@ -276,7 +281,9 @@ class UserController extends Controller
     {
         try {
 
-            $user = User::where('email', $request->email)->get()[0];
+            $tkn = stripslashes(explode(' ', $request->header('authorization'))[1]);
+
+            $user = User::where('token', '=', $tkn)->first();
             $user->token = null;
             $user->save();
 

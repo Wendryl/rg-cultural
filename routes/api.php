@@ -28,8 +28,8 @@ Route::middleware('auth')->controller(UserController::class)->group(function() {
     Route::put('/users/{id}', 'update');
     Route::post('/users/{id}/profile-picture', 'updateProfilePicture');
     Route::delete('/users/{id}', 'destroy');
-    Route::get('/users/logout/{email}', 'logout');
-    Route::post('/users/login', 'login')->withoutMiddleware('auth');
+    Route::get('/logout', 'logout');
+    Route::post('/login', 'login')->withoutMiddleware('auth');
 });
 
 Route::middleware('auth')->controller(CategoryController::class)->group(function() {

@@ -1,11 +1,3 @@
-@import url('reset.css');
-@import url('style.css');
-@import url('cores.css');
-@import url('flexbox.css');
-@import url('registro.css');
-@import url('header.css');
-@import url('footer.css');
-
 
 :root{
     --branco: #FFF;
