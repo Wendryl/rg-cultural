@@ -40,3 +40,7 @@ Route::get('/descobrir', function () {
 Route::get('/sobre_nos', function () {
     return view('sobre_nos');
 });
+
+Route::get('/admin', function () {
+    return view('admin');
+});
