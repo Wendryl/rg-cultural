@@ -1,6 +1,8 @@
 window.onload = () => {
   _verifyUser();
-  document.querySelector('#title').innerHTML = JSON.parse(sessionStorage.getItem('user_data')).name;
+  const title = document.querySelector('#title');
+  if (title != null)
+    title.innerHTML = JSON.parse(sessionStorage.getItem('user_data')).name;
 }
 
 window.logout = () => {

@@ -6,7 +6,8 @@ var __webpack_exports__ = {};
 window.onload = function () {
   _verifyUser();
 
-  document.querySelector('#title').innerHTML = JSON.parse(sessionStorage.getItem('user_data')).name;
+  var title = document.querySelector('#title');
+  if (title != null) title.innerHTML = JSON.parse(sessionStorage.getItem('user_data')).name;
 };
 
 window.logout = function () {
