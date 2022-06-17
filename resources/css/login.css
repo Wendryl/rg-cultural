@@ -1,4 +1,4 @@
-.form__registro{
+.form__login {
     background-color: #D3D3D3;
     border-radius: 10px;
     
@@ -22,7 +22,7 @@
 }
 
 
-.form__registro-titulo{
+.form__login-titulo{
     border-bottom: 1px solid;
 
     padding: 15px 0;
@@ -34,14 +34,14 @@
     margin-bottom: 15px;
 }
 
-.form__registro-user{
+.form__login-user{
     font-size: 1.3rem;
     padding-left: 10px;
     text-align: left;
 }
 
 
-.form__registro-input-user{
+.form__login-input-user{
     border: none;
     border-radius: 10px;
     
@@ -59,13 +59,13 @@
     width: 90%;
 }
 
-.form__registro-pass{
+.form__login-pass{
     font-size: 1.3rem;
     padding-left: 10px;
     text-align: left;
 }
 
-.form__registro-input-pass{
+.form__login-input-pass{
     border: none;
     border-radius: 10px;
 
@@ -83,19 +83,19 @@
     width: 90%;
 }
 
-.form__registro-link{
+.form__login-link{
      margin: 15px 0;
     text-transform: capitalize;    
     text-decoration: underline;
     
 }
 
-.form__registro-link a{
+.form__login-link a{
     color:rgb(74, 74, 255);
     font-size: 1.4rem;
 }
 
-.form__registro-botao{
+.form__login-botao{
     background-color: #f0f0f0;
 
     border: none;
@@ -113,23 +113,23 @@
 
 @media screen and (min-width:768px){
 
-    .form__registro{
+    .form__login{
         margin-top: 80px;
         max-width: 350px;
     }
 
-    .form__registro-botao{
+    .form__login-botao{
         max-width: 300px;
     }
 
-    .form__registro-user{
+    .form__login-user{
         font-size: 1.3rem;
         padding-left: 10px;
         text-align: left;
     }
     
     
-    .form__registro-input-user{
+    .form__login-input-user{
         border: none;
         border-radius: 10px;
         
@@ -147,7 +147,7 @@
         width: 90%;
     }
     
-    .form__registro-pass{
+    .form__login-pass{
         font-size: 1.3rem;
 
         padding-left: 10px;
@@ -155,7 +155,7 @@
         text-align: left;
     }
     
-    .form__registro-input-pass{
+    .form__login-input-pass{
         border: none;
         border-radius: 10px;
     
@@ -185,17 +185,17 @@
     }
 
 
-    .form__registro-link a{
+    .form__login-link a{
         font-size: 1.3rem;
     }
     
-    .form__registro{
+    .form__login{
         max-width: 400px;
         max-height: 550px;
         padding: 20px 40px 40px 40px;
     }   
 
-    .form__registro-botao{
+    .form__login-botao{
         max-width: 50%;
         margin-top: 30px;
 
