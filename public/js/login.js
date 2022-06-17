@@ -5,12 +5,13 @@ var __webpack_exports__ = {};
   \*******************************/
 window.login = function (event) {
   event.preventDefault();
-  var form = new FormData(document.querySelector('form'));
-  fetch('/api/login', {
+  var form = new FormData(document.querySelector("form"));
+  fetch("/api/login", {
     body: form,
-    method: 'POST'
-  }).then(function (body) {
-    return body.json();
+    method: "POST"
+  }).then(function (res) {
+    if (res.status === 401) throw new Error("Usuário ou senha incorretos");
+    return res.json();
   }).then(function (res) {
     sessionStorage.setItem('tkn', res.token);
     sessionStorage.setItem('user_data', JSON.stringify(res.user));

@@ -30,6 +30,9 @@ function _verifyUser() {
     alert('Usuário não autenticado!');
     return window.location.replace('/');
   }
+
+  var user = JSON.parse(sessionStorage.getItem('user_data'));
+  if (user.type === '1' && !window.location.toString().includes('admin')) return window.location.replace('admin');
 }
 /******/ })()
 ;

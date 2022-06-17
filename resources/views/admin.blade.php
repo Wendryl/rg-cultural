@@ -483,5 +483,6 @@ table.table .avatar {
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/home.js') }}"></script>
     </body>
 </html>
