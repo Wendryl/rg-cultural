@@ -18,6 +18,12 @@ body {
     font-family: 'Varela Round', sans-serif;
     font-size: 13px;
 }
+
+.profile-thumb {
+    max-width: 50px;
+    border-radius: 50%;
+}
+
 .table-responsive {
     margin: 30px 0;
 }
@@ -280,6 +286,7 @@ table.table .avatar {
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Nome</th>
                                 <th>E-mail</th>
                                 <th>Endereço</th>
@@ -287,17 +294,7 @@ table.table .avatar {
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Thomas Hardy</td>
-                                <td>thomashardy@mail.com</td>
-                                <td>89 Chiaroscuro Rd, Portland, USA</td>
-                                <td>(171) 555-2222</td>
-                                <td>
-                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                </td>
-                            </tr>
+                        <tbody id="list">
                         </tbody>
                     </table>
                     <div class="clearfix">
@@ -407,5 +404,8 @@ table.table .avatar {
             </div>
         </div>
         <script src="{{ asset('js/home.js') }}"></script>
+        <script>
+            listUsers();
+        </script>
     </body>
 </html>
