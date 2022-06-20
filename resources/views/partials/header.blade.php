@@ -9,9 +9,7 @@
                 <li><a href="{{ url('index') }}" class='cabecalho__principal-nav-link'>Inicio</a></li>
                 <li><a href="{{ url('login') }}" class='cabecalho__principal-nav-link'>Entrar</a></li>
                 <li><a href="{{ url('registrar') }}" class='cabecalho__principal-nav-link'>Registrar</a></li>
-                <li><a href="{{ url('descobrir') }}" class='cabecalho__principal-nav-link'>Descobrir</a></li>
                 <li><a href="{{ url('sobre_nos') }}" class='cabecalho__principal-nav-link'>Sobre Nós</a></li>
-                <li><a href="{{ url('logout') }}" class='cabecalho__principal-nav-link'>Sair</a></li>
             </ul>
         </nav>
     </div>

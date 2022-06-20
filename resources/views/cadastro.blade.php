@@ -43,8 +43,8 @@
     </p>
 
     <div class="botoes__acoes">
-        <input type="submit" value="Cadastrar" class="form__registro-botao" />
-        <input type="reset" value="Limpar" class="form__registro-botao" />
+        <input type="submit" value="Cadastrar" class="form__login-botao" />
+        <input type="reset" value="Limpar" class="form__login-botao" />
     </div>
 </form>
 
