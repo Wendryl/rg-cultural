@@ -3,9 +3,9 @@ var __webpack_exports__ = {};
 /*!******************************!*\
   !*** ./resources/js/home.js ***!
   \******************************/
-window.onload = function () {
-  _verifyUser();
+_verifyUser();
 
+window.onload = function () {
   var title = document.querySelector('#title');
   if (title != null) title.innerHTML = JSON.parse(sessionStorage.getItem('user_data')).name;
 };

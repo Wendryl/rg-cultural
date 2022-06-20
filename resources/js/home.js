@@ -1,5 +1,6 @@
+_verifyUser();
+
 window.onload = () => {
-  _verifyUser();
   const title = document.querySelector('#title');
   if (title != null)
     title.innerHTML = JSON.parse(sessionStorage.getItem('user_data')).name;
