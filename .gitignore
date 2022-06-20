@@ -1,7 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
-/public/upload
+/public/upload/cultural-column
+/public/upload/profile-pics
 /storage/*.key
 /vendor
 .env
