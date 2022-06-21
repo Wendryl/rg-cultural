@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         try {
 
-            $categories = Category::all();
+            $categories = Category::withCount('sub_categories')->get();
 
             return response()->json($categories, 200);
 
