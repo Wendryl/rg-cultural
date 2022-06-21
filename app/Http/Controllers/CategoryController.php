@@ -18,14 +18,7 @@ class CategoryController extends Controller
     {
         try {
 
-            $pageSize = $request->query('pageSize');
-
-            if ($pageSize != 0)
-                $categories = DB::table('categories')->orderBy('created_at')->paginate($pageSize);
-            else
-                $categories = DB::table('categories')->orderBy('created_at')->get();
-
-            $categories = Category::simplePaginate($request->query('pageSize'));
+            $categories = Category::all();
 
             return response()->json($categories, 200);
 

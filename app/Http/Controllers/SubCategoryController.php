@@ -18,14 +18,7 @@ class SubCategoryController extends Controller
     {
         try {
 
-            $pageSize = $request->query('pageSize');
-
-            if ($pageSize != 0)
-                $sub_categories = DB::table('sub_categories')->orderBy('created_at')->paginate($pageSize);
-            else
-                $sub_categories = DB::table('sub_categories')->orderBy('created_at')->get();
-
-            $sub_categories = SubCategory::simplePaginate($request->query('pageSize'));
+            $sub_categories = SubCategory::all();
 
             return response()->json($sub_categories, 200);
 
