@@ -1,4 +1,4 @@
-@extends('templateIndex_head');
+@extends('templateIndex_head')
 @section('head')
     <title> RG Cultural</title>
 @endsection
