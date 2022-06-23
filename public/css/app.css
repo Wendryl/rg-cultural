@@ -824,3 +824,26 @@ main{
 
 /* FIM SECTION DESCUBRA */ 
 
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 900px;
+  margin: 15px auto;
+}
+
+.card h4 {
+  font-weight: bold;
+  margin: 15px 0;
+  font-size: 1.25rem;
+}
+
+.card h1 {
+  font-weight: bold;
+  margin: 25px 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  line-height: 1.5rem;
+}
