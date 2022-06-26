@@ -3,5 +3,6 @@
     "/js/login.js": "/js/login.js",
     "/js/register.js": "/js/register.js",
     "/js/home.js": "/js/home.js",
+    "/css/admin/main.css": "/css/admin/main.css",
     "/css/app.css": "/css/app.css"
 }
