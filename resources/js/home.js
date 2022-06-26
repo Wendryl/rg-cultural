@@ -13,7 +13,7 @@ window.onload = () => {
     profilePic.setAttribute('src', user.profile_picture ?? `${window.location.origin}/img/profile.png`);
 
   if (welcomeMessage != null)
-    welcomeMessage.innerHTML = `Olá <strong>${user.name}</strong> bem vindo ao portal <strong>RG Cultural</strong>.`;
+    welcomeMessage.innerHTML = `Olá <strong>${user.name}!</strong><br>Bem vindo ao portal <strong>RG Cultural!</strong>`;
 
 }
 
