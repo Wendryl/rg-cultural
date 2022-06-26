@@ -2,8 +2,19 @@ _verifyUser();
 
 window.onload = () => {
   const title = document.querySelector('#title');
+  const welcomeMessage = document.querySelector('#welcome-text')
+  const profilePic = document.querySelector('#profile-pic');
+  const user = JSON.parse(sessionStorage.getItem('user_data'));
+
   if (title != null)
-    title.innerHTML = JSON.parse(sessionStorage.getItem('user_data')).name;
+    title.innerHTML = user.name;
+
+  if (profilePic != null)
+    profilePic.setAttribute('src', user.profile_picture ?? `${window.location.origin}/img/profile.png`);
+
+  if (welcomeMessage != null)
+    welcomeMessage.innerHTML = `Olá <strong>${user.name}</strong> bem vindo ao portal <strong>RG Cultural</strong>.`;
+
 }
 
 window.logout = () => {
