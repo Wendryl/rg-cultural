@@ -50,4 +50,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function address()
+    {
+        if ($this->street && $this->neighborhood && $this->number)
+            return "$this->street, Nº $this->number - $this->city";
+        return '-';
+    }
 }
