@@ -120,6 +120,11 @@ body {
     height: 6vh;
   }
 
+  .user-info img {
+    width: 30px;
+    height: 30px;
+  }
+
   .container {
     height: 94vh;
   }
