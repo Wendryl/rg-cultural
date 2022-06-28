@@ -1,8 +1,11 @@
 @extends('admin-base')
-@section('body')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/admin/complete-registration.css')}}">
+<link rel="stylesheet" href="{{ asset('css/admin/complete-registration.css') }}">
 @endpush
+@push('scripts')
+<script src="{{ asset('js/complete-registration.js') }}"></script>
+@endpush
+@section('body')
 <form class="form-card">
   <div class="edit-picture">
     <img src="{{ asset('img/profile.png')}}" alt="Sua imagem de perfil.">
