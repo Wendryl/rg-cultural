@@ -1,0 +1,83 @@
+.form-card {
+  background: #fff;
+  padding: 15px 10px;
+  margin: 15px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.form-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-picture {
+  position: relative;
+  cursor: pointer;
+}
+
+.edit-picture img {
+  width: 90px;
+}
+
+.edit-picture:hover img {
+  filter: brightness(0.4);
+}
+
+.edit-picture svg {
+  display: none;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  width: 40px;
+  transform: translate(-50%, -50%);
+}
+
+.edit-picture:hover svg {
+  display: block
+}
+
+
+.form-card input[type="file"] {
+  display: none;
+}
+
+.form-card input {
+  border: none;
+  background: rgb(245 245 245);
+  padding: 8px 10px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
+
+.form-card input:focus-visible {
+  background: rgb(230, 230, 230);
+  outline: none;
+}
+
+.form-card button {
+  width: 100%;
+  margin: 15px 0 0 0;
+}
+
+@media screen and (min-width: 768px) {
+
+  .form-card {
+    max-width: 530px;
+    margin: 15px auto;
+  }
+
+  .form-card div:not(div.edit-picture) {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .form-card div input {
+    width: 100%;
+  }
+
+}

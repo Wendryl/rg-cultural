@@ -26,7 +26,11 @@ Route::get('/login', function () {
 });
 
 Route::get('/home', function () {
-    return view('perfil');
+    return view('user-dashboard');
+});
+
+Route::get('/completar-cadastro', function () {
+    return view('complete-registration');
 });
 
 Route::get('/registrar', function () {
