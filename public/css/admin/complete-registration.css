@@ -22,6 +22,10 @@
 
 .edit-picture img {
   width: 90px;
+  height: 90px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
 }
 
 .edit-picture:hover img {
