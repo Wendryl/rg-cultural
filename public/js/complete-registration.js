@@ -18,8 +18,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 _setFormData();
 
 function _setFormData() {
+  var _ref;
+
   var user = JSON.parse(sessionStorage.getItem("user_data"));
   var fields = document.querySelectorAll("input");
+  var img = document.querySelector("#pic-preview");
+  img.src = (_ref = '/' + user.profile_picture) !== null && _ref !== void 0 ? _ref : '/img/profile.png';
   fields.forEach(function (f) {
     if (user.hasOwnProperty(f.name)) f.value = user[f.name];
   });
@@ -30,13 +34,27 @@ window.openFileInput = function () {
   fileField.click();
 };
 
-window.setPicPreview = function (e) {
+window.setProfilePic = function (e) {
   var img = document.querySelector("#pic-preview");
 
   var _e$target$files = _slicedToArray(e.target.files, 1),
       file = _e$target$files[0];
 
+  var userId = JSON.parse(sessionStorage.getItem("user_data")).id;
   if (file) img.src = URL.createObjectURL(file);
+  var body = new FormData();
+  body.append('profile_picture', file);
+  fetch("/api/users/".concat(userId, "/profile-picture"), {
+    headers: {
+      'Authorization': "Bearer ".concat(sessionStorage.getItem('tkn'))
+    },
+    method: 'POST',
+    body: body
+  }).then(function (res) {
+    return res.json();
+  }).then(function (result) {
+    return console.log(result);
+  });
 };
 /******/ })()
 ;
