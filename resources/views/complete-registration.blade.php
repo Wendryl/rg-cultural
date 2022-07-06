@@ -6,7 +6,7 @@
 <script src="{{ asset('js/complete-registration.js') }}"></script>
 @endpush
 @section('body')
-<form class="form-card">
+<form class="form-card" onsubmit="saveProfile(event)">
   <div class="edit-picture" onclick="openFileInput()">
     <img src="{{ asset('img/profile.png')}}" alt="Sua imagem de perfil." id="pic-preview">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
@@ -15,23 +15,22 @@
   </div>
   <input type="file" name="profilePicture" onchange="setProfilePic(event)" accept=".jpg, .jpeg, .png">
   <div>
-    <input type="text" name="name" placeholder="Nome*">
+    <input type="text" name="name" placeholder="Nome*" required>
   </div>
   <div>
-    <input type="text" name="email" placeholder="E-mail*">
+    <input type="text" name="email" placeholder="E-mail*" required>
   </div>
   <div>
-    <input type="text" name="phone" placeholder="Telefone*">
-    <input type="text" name="cep" placeholder="CEP">
+    <input type="text" name="phone" placeholder="Telefone*" required>
   </div>
   <div>
-    <input type="text" name="address" placeholder="Endereço">
+    <input type="text" name="street" placeholder="Endereço">
     <input type="text" name="number" placeholder="Número">
   </div>
   <div>
     <input type="text" name="neighborhood" placeholder="Bairro">
     <input type="text" name="city" placeholder="Cidade">
   </div>
-    <button class="btn btn-save">Salvar</button>
+  <button class="btn btn-save">Salvar</button>
 </form>
 @endsection

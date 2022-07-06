@@ -34,5 +34,28 @@ window.setProfilePic = (e) => {
     method: 'POST',
     body
   }).then(res => res.json())
-  .then(result => console.log(result))
+  .then(_result => { return })
+  .catch(err => console.warn(err));
 };
+
+window.saveProfile = (e) => {
+  e.preventDefault();
+  const data = new FormData(document.querySelector('form'));
+  let body = {};
+  const userId = JSON.parse(sessionStorage.getItem("user_data")).id;
+
+  data.forEach((val, key) => {
+    body[key] = val;
+  });
+
+  fetch(`/api/users/${userId}`, {
+    headers: {
+      'Authorization': `Bearer ${sessionStorage.getItem('tkn')}`,
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(body)
+  }).then(res => res.json())
+  .then(_result => { return })
+  .catch(err => console.warn(err));
+}
