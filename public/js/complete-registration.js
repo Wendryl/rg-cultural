@@ -52,8 +52,34 @@ window.setProfilePic = function (e) {
     body: body
   }).then(function (res) {
     return res.json();
-  }).then(function (result) {
-    return console.log(result);
+  }).then(function (_result) {
+    return;
+  })["catch"](function (err) {
+    return console.warn(err);
+  });
+};
+
+window.saveProfile = function (e) {
+  e.preventDefault();
+  var data = new FormData(document.querySelector('form'));
+  var body = {};
+  var userId = JSON.parse(sessionStorage.getItem("user_data")).id;
+  data.forEach(function (val, key) {
+    body[key] = val;
+  });
+  fetch("/api/users/".concat(userId), {
+    headers: {
+      'Authorization': "Bearer ".concat(sessionStorage.getItem('tkn')),
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(body)
+  }).then(function (res) {
+    return res.json();
+  }).then(function (_result) {
+    return;
+  })["catch"](function (err) {
+    return console.warn(err);
   });
 };
 /******/ })()
