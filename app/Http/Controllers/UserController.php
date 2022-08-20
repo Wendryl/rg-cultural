@@ -268,7 +268,7 @@ class UserController extends Controller
 
         } catch(Exception $e) {
             Log::error($e->getMessage());
-            return redirect('login')->with('error', 'Erro ao cadastrar usuário!');
+            return redirect('login')->with('error', 'Erro ao tentar se autenticar!');
         }
     }
 

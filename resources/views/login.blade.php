@@ -1,8 +1,13 @@
 @extends('templateIndex_head') @section('head')
 <title>TV Taubaté | Login</title>
 @endsection @section('body')
-<form class="form__login" action="/login" method="POST">
-  @csrf
+  <form class="form__login" action="/login" method="POST">
+    @csrf
+    @if (session('error'))
+      <span class="error-msg">
+        {{ session('error') }}
+      </span>
+    @endif
     <h1 class="form__login-titulo">Entrar</h1>
     <h2 class="form__login-user">Usuario:</h2>
     <input
