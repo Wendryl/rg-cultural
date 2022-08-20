@@ -14,7 +14,7 @@
   <div class="user-wrapper">
     <div class="user-info">
       <span id="title"></span>
-      <img id="profile-pic" alt="Sua imagem de perfil." src="{{ $user->profile_picture }}">
+      <img id="profile-pic" alt="Sua imagem de perfil." src="{{ $user->profile_picture ?? '/img/profile.png' }}">
     </div>
   </div>
   <div class="container">

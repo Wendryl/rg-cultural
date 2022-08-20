@@ -348,6 +348,7 @@ class UserController extends Controller
         $user = auth()->user();
         try {
             Auth::logout();
+            return redirect('login')->with('message', 'Logout realizado com sucesso!');
         } catch(Exception $e) {
             Log::debug($e->getMessage());
 
