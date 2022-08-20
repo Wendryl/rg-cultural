@@ -31,10 +31,10 @@
         required
     />
     <div class="links__form">
-        <p class="form__login-link">
-            <a href="{{ url('esqueci_senha') }}">esqueci minha senha</a>
-        </p>
-
+        {{-- <p class="form__login-link"> --}}
+        {{--     <a href="{{ url('esqueci_senha') }}">esqueci minha senha</a> --}}
+        {{-- </p> --}}
+        {{-- TODO - Implementar método de recuperação de senha --}}
         <p class="form__login-link">
             <a href="{{ url('registrar') }}">Cadastrar</a>
         </p>

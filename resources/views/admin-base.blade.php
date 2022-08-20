@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="{{ asset('css/admin/main.css')}}">
     @stack('styles')
 </head>
+<pre>
+</pre>
 <body class="bg-light">
   <div class="user-wrapper">
     <div class="user-info">
       <span id="title"></span>
-      <img id="profile-pic" alt="Sua imagem de perfil.">
+      <img id="profile-pic" alt="Sua imagem de perfil." src="{{ $user->profile_picture }}">
     </div>
   </div>
   <div class="container">
@@ -37,7 +39,7 @@
           Dashboard
         </span>
       </a>
-      <a href="javascript:void(0)" onclick="logout()">
+      <a href="/logout">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="rgb(111 115 239)" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
         </svg>

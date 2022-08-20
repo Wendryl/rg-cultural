@@ -343,6 +343,21 @@ class UserController extends Controller
         }
     }
 
+    public function logoutSite()
+    {
+        $user = auth()->user();
+        try {
+            Auth::logout();
+        } catch(Exception $e) {
+            Log::debug($e->getMessage());
+
+            if ($user->type == 1)
+                return redirect('admin')->with('error', 'Erro ao realizar logout!');
+
+            return redirect('home')->with('error', 'Erro ao realizar logout!');
+        }
+    }
+
     public function logout(Request $request)
     {
         try {
