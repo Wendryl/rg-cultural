@@ -16,8 +16,7 @@ mix.js('resources/js/app.js', 'public/js')
         //
     ]);
 
-mix.styles('resources/css/*', 'public/css/app.css');
-mix.js('resources/js/register', 'public/js')
+mix.styles('resources/css/*', 'public/css/app.css')
   .postCss('resources/css/admin/main.css', 'public/css/admin');
 
 mix.js('resources/js/complete-registration', 'public/js')
