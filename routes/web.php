@@ -40,6 +40,8 @@ Route::get('/registrar', function () {
     return view('cadastro');
 });
 
+Route::post('/register', [UserController::class, 'storeSite']);
+
 Route::get('/descobrir', function () {
     return view('descobrir');
 });

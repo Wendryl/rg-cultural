@@ -8,6 +8,11 @@
         {{ session('error') }}
       </span>
     @endif
+    @if (session('message'))
+      <span class="success-msg">
+        {{ session('message') }}
+      </span>
+    @endif
     <h1 class="form__login-titulo">Entrar</h1>
     <h2 class="form__login-user">Usuario:</h2>
     <input

@@ -93,6 +93,42 @@ class UserController extends Controller
         }
     }
 
+    public function storeSite(Request $request)
+    {
+        try {
+
+            $this->_validateUser($request);
+
+            $user = new User([
+                'name' => $request->name,
+                'email' => $request->email,
+                'type' => '0',
+                'phone' => $request->phone ?? null,
+                'access' => (new DateTime())->format('Y-m-d\TH:i:s.u'),
+                'street' => $request->street ?? null,
+                'number' => $request->number ?? null,
+                'neighborhood' => $request->neighborhood ?? null,
+                'city' => $request->city ?? null,
+                'uf' => $request->uf ?? null
+            ]);
+
+            $user->password = Hash::make($request->password);
+
+            if (!is_null($request->file('profile_picture')))
+                $user->profile_picture = $this->_saveProfilePic($request, $request->name);
+
+            $user->save();
+
+            if ($request->isMethod('post')) {
+                return redirect('login')->with('message', 'Usuário cadastrado sucesso!');
+            }
+
+        } catch (Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect('registrar')->with('error', $e->getMessage());
+        }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -337,15 +373,15 @@ class UserController extends Controller
         return $save_path;
     }
 
-    private function _validateUser($user_data)
+    private function _validateUser(Request $user_data)
     {
-        if (!property_exists($user_data, 'name'))
+        if (!property_exists($user_data, 'name') && !$user_data->has('name'))
             throw new Exception('O campo nome é obrigatório');
 
-        if (!property_exists($user_data, 'email'))
+        if (!property_exists($user_data, 'email') && !$user_data->has('email'))
             throw new Exception('O campo e-mail é obrigatório');
 
-        if (!property_exists($user_data, 'password'))
+        if (!property_exists($user_data, 'password') && !$user_data->has('password'))
             throw new Exception('O campo senha é obrigatório');
 
         $user = User::where('email', '=', $user_data->email)->get();

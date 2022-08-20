@@ -1,7 +1,13 @@
 @extends('templateIndex_head'); @section('head')
 <title>TV Taubaté | Registrar</title>
 @endsection @section('body')
-<form class="form__cadastro" onsubmit="register(event)">
+<form class="form__cadastro" action="/register" method="POST">
+  @csrf
+    @if (session('error'))
+      <span class="error-msg">
+        {{ session('error') }}
+      </span>
+    @endif
     <h1 class="form__cadastro-titulo">Cadastrar</h1>
 
     <h2 class="form__cadastro-email">Email (Também será o seu ID):</h2>
@@ -47,7 +53,4 @@
         <input type="reset" value="Limpar" class="form__login-botao" />
     </div>
 </form>
-
-@push('scripts')
-<script src="{{ asset('js/register.js') }}"></script>
-@endpush @endsection
+@endsection

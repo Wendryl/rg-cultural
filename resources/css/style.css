@@ -190,3 +190,11 @@ main {
 .card p {
     line-height: 1.5rem;
 }
+
+.error-msg {
+  color: #d32d2d
+}
+
+.success-msg {
+  color: #24ad35
+}
