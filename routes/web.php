@@ -24,17 +24,21 @@ Route::get('/index', function () {
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 
 Route::post('/login', [UserController::class, 'loginSite']);
 
 Route::get('/home', function () {
-    return view('user-dashboard');
-});
+    $user = auth()->user();
+    return view('user-dashboard', ['user' => $user]);
+})->middleware('auth');
 
 Route::get('/completar-cadastro', function () {
-    return view('complete-registration');
-});
+    $user = auth()->user();
+    return view('complete-registration', ['user' => $user]);
+})->middleware('auth');
+
+Route::get('/logout', [UserController::class, 'logoutSite']);
 
 Route::get('/registrar', function () {
     return view('cadastro');
