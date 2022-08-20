@@ -1,7 +1,8 @@
 @extends('templateIndex_head') @section('head')
 <title>TV Taubaté | Login</title>
 @endsection @section('body')
-<form class="form__login" onsubmit="login(event)">
+<form class="form__login" action="/login" method="POST">
+  @csrf
     <h1 class="form__login-titulo">Entrar</h1>
     <h2 class="form__login-user">Usuario:</h2>
     <input
@@ -30,6 +31,4 @@
     </div>
     <button class="form__login-botao" type="submit">Entrar</button>
 </form>
-@push('scripts')
-<script src="{{ asset('js/login.js') }}"></script>
-@endpush @endsection
+@endsection

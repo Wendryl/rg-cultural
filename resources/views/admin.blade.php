@@ -403,9 +403,5 @@ table.table .avatar {
                 </div>
             </div>
         </div>
-        <script src="{{ asset('js/home.js') }}"></script>
-        <script>
-            listUsers();
-        </script>
     </body>
 </html>

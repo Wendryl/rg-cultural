@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Cookie;
 
@@ -239,6 +240,35 @@ class UserController extends Controller
             return response()->json([
                 'error' => $e->getMessage()
             ], 500);
+        }
+    }
+
+    public function loginSite(Request $request)
+    {
+        try {
+
+            if((is_null($request->phone) && is_null($request->email)) || is_null($request->password)) {
+                return redirect('login')->with('error', 'Informe a senha e e-mail para se autenticar');
+            }
+
+            $auth_result = Auth::attempt($request->only('email', 'password'));
+
+            if(!$auth_result)
+                return redirect('login')->with('error', 'Usuário ou senha incorretos');
+
+            $user = User::where('email', $request->email)->get()[0];
+            $token = Hash::make(time() . $user->id);
+            $user->token = $token;
+            $user->save();
+
+            if ($user->type == 1)
+                return redirect('admin');
+
+            return redirect('home');
+
+        } catch(Exception $e) {
+            Log::error($e->getMessage());
+            return redirect('login')->with('error', 'Erro ao cadastrar usuário!');
         }
     }
 

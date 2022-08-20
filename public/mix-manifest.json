@@ -1,8 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/js/login.js": "/js/login.js",
     "/js/register.js": "/js/register.js",
-    "/js/home.js": "/js/home.js",
     "/js/complete-registration.js": "/js/complete-registration.js",
     "/css/admin/complete-registration.css": "/css/admin/complete-registration.css",
     "/css/admin/main.css": "/css/admin/main.css",
