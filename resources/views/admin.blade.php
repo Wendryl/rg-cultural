@@ -286,7 +286,7 @@ table.table .avatar {
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>#</th>
                                 <th>Nome</th>
                                 <th>E-mail</th>
                                 <th>Endereço</th>
@@ -295,6 +295,25 @@ table.table .avatar {
                             </tr>
                         </thead>
                         <tbody id="list">
+                          @foreach($users as $user)
+                            <tr>
+                              <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->street ?? 'N/A' }}</td>
+                                <td>{{ $user->phone ?? 'N/A' }}</td>
+                                <td>
+                                  <div class="d-flex">
+                                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editEmployeeModal">
+                                      Editar
+                                    </button>
+                                    <button class="ml-1 btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteEmployeeModal">
+                                      Excluir
+                                    </button>
+                                  </div>
+                                </td>
+                            </tr>
+                          @endforeach
                         </tbody>
                     </table>
                     <div class="clearfix">
