@@ -38,6 +38,8 @@ Route::get('/completar-cadastro', function () {
     return view('complete-registration', ['user' => $user]);
 })->middleware('auth');
 
+Route::put('/update', [UserController::class, 'updateSite'])->middleware('auth');
+
 Route::get('/logout', [UserController::class, 'logoutSite']);
 
 Route::get('/registrar', function () {

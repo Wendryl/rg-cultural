@@ -124,7 +124,7 @@ class UserController extends Controller
             }
 
         } catch (Exception $e) {
-            Log::debug($e->getMessage());
+            Log::error($e->getMessage());
             return redirect('registrar')->with('error', $e->getMessage());
         }
     }
@@ -224,6 +224,32 @@ class UserController extends Controller
         }
     }
 
+    public function updateSite(Request $request)
+    {
+        try {
+
+            $user = User::find(auth()->user()->id);
+
+            $user['name'] = $request->input('name');
+            $user['phone'] = $request->input('phone') ?? null;
+            $user['access'] = (new DateTime())->format('Y-m-d\TH:i:s.u');
+            $user['street'] = $request->input('street') ?? null;
+            $user['number'] = $request->input('number') ?? null;
+            $user['neighborhood'] = $request->input('neighborhood') ?? null;
+            $user['city'] = $request->input('city') ?? null;
+            if (!is_null($request->profile_picture))
+                $user['profile_picture'] = $this->_saveProfilePic($request, $user->name);
+            $user->save();
+
+            return redirect('completar-cadastro')->with('message', 'Usuário atualizado com sucesso!');
+
+        } catch (Exception $e) {
+            Log::error($e->getTraceAsString());
+            Log::error($e->getMessage());
+            return redirect('completar-cadastro')->with('error', 'Erro ao atualizar o usuário!');
+        }
+    }
+
 
     public function updateProfilePicture(int $id, Request $request)
     {
@@ -232,7 +258,7 @@ class UserController extends Controller
             $user = User::find($id);
 
             if($user == null)
-                return response()->json([
+            return response()->json([
                     'message' => 'Usuário não encontrado'
                 ], 404);
 
@@ -350,7 +376,7 @@ class UserController extends Controller
             Auth::logout();
             return redirect('login')->with('message', 'Logout realizado com sucesso!');
         } catch(Exception $e) {
-            Log::debug($e->getMessage());
+            Log::error($e->getMessage());
 
             if ($user->type == 1)
                 return redirect('admin')->with('error', 'Erro ao realizar logout!');
