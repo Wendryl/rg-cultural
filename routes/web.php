@@ -58,6 +58,6 @@ Route::get('/sobre_nos', function () {
 });
 
 Route::get('/admin', function () {
-    $users = User::all();
+    $users = User::paginate(15);
     return view('admin', ['users' => $users]);
 });

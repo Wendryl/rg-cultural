@@ -299,9 +299,21 @@ table.table .avatar {
                             <tr>
                               <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
+                                <td>
+                                  <a href="mailto:${{ $user->email }}" target="_blank">
+                                    {{ $user->email }}
+                                  </a>
+                                </td>
                                 <td>{{ $user->street ?? 'N/A' }}</td>
-                                <td>{{ $user->phone ?? 'N/A' }}</td>
+                                <td>
+                                  @if($user->phone != null)
+                                  <a href="tel:{{ $user->phone }}">
+                                    {{ $user->phone }}
+                                  </a>
+                                  @else
+                                  N/A
+                                  @endif
+                                </td>
                                 <td>
                                   <div class="d-flex">
                                     <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editEmployeeModal">
@@ -317,15 +329,11 @@ table.table .avatar {
                         </tbody>
                     </table>
                     <div class="clearfix">
-                        <div class="hint-text">Mostrando <b>5</b> de <b>25</b> registros</div>
+                      <div class="hint-text">Mostrando <b>{{ $users->count() }}</b> de <b>{{ $users->total() }}</b> registros</div>
                         <ul class="pagination">
-                            <li class="page-item disabled"><a href="#">Anterior</a></li>
-                            <li class="page-item"><a href="#" class="page-link">1</a></li>
-                            <li class="page-item"><a href="#" class="page-link">2</a></li>
-                            <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                            <li class="page-item"><a href="#" class="page-link">4</a></li>
-                            <li class="page-item"><a href="#" class="page-link">5</a></li>
-                            <li class="page-item"><a href="#" class="page-link">Próxima</a></li>
+                          <li class="page-item disabled"><a href="{{ $users->previousPageUrl() }}">Anterior</a></li>
+                            <li class="page-item active"><a href="javascript:void(0)" class="page-link">{{ $users->currentPage() }}</a></li>
+                            <li class="page-item"><a href="{{ $users->nextPageUrl() }}" class="page-link">Próxima</a></li>
                         </ul>
                     </div>
                 </div>
