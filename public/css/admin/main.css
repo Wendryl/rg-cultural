@@ -227,3 +227,11 @@ body {
     width: 0;
 }
 
+.error-msg {
+  color: #d32d2d
+}
+
+.success-msg {
+  color: #24ad35
+}
+
