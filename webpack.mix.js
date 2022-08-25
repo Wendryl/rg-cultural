@@ -17,7 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
     ]);
 
 mix.styles('resources/css/*', 'public/css/app.css')
-  .postCss('resources/css/admin/main.css', 'public/css/admin');
+  .postCss('resources/css/user-dashboard/index.css', 'public/css/admin');
 
-mix.js('resources/js/complete-registration', 'public/js')
-  .postCss('resources/css/admin/complete-registration.css', 'public/css/admin');
+mix.js('resources/js/user-dashboard/complete-registration', 'public/js')
+  .postCss('resources/css/user-dashboard/complete-registration.css', 'public/css/admin');
