@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-    "/js/complete-registration.js": "/js/complete-registration.js",
+    "/js/user-dashboard/complete-registration.js": "/js/user-dashboard/complete-registration.js",
+    "/js/admin-dashboard/index.js": "/js/admin-dashboard/index.js",
     "/css/admin-dashboard/index.css": "/css/admin-dashboard/index.css",
     "/css/user-dashboard/complete-registration.css": "/css/user-dashboard/complete-registration.css",
     "/css/user-dashboard/index.css": "/css/user-dashboard/index.css",
