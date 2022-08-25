@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="{{ asset('css/admin/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/user-dashboard/index.css')}}">
     @stack('styles')
 </head>
 <pre>
