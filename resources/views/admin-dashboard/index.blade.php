@@ -242,6 +242,39 @@ table.table .avatar {
 .modal form label {
     font-weight: normal;
 }
+
+.edit-picture {
+  position: relative;
+  cursor: pointer;
+}
+
+.edit-picture img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.edit-picture:hover img {
+  filter: brightness(0.4);
+}
+
+.edit-picture svg {
+  display: none;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  width: 40px;
+  transform: translate(-50%, -50%);
+}
+
+.edit-picture:hover svg {
+  display: block
+}
+
+.form-card input[type="file"] {
+  display: none;
+}
         </style>
         <script>
             $(document).ready(function(){
@@ -287,6 +320,7 @@ table.table .avatar {
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th></th>
                                 <th>Nome</th>
                                 <th>E-mail</th>
                                 <th>Endereço</th>
@@ -297,7 +331,10 @@ table.table .avatar {
                         <tbody id="list">
                           @foreach($users as $user)
                             <tr>
-                              <td>{{ $user->id }}</td>
+                                <td>{{ $user->id }}</td>
+                                <td>
+                                    <img src="{{ $user->profile_picture ?? '/img/profile.png' }}" class="profile-thumb">
+                                </td>
                                 <td>{{ $user->name }}</td>
                                 <td>
                                   <a href="mailto:${{ $user->email }}" target="_blank">
@@ -349,6 +386,12 @@ table.table .avatar {
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
+                            <div class="edit-picture" onclick="openFileInput()">
+                                <img src="/img/profile.png" id="pic-preview">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </div>
                             <div class="form-group">
                                 <label>Nome</label>
                                 <input type="text" class="form-control" required>

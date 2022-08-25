@@ -1,4 +1,4 @@
-@extends('admin-base')
+@extends('user-dashboard/dashboard-base')
 @section('body')
   <div class="welcome-box">
     <img src="{{ asset('img/welcome.jpg') }}" alt="Pessoas acenando, bem vindo!">

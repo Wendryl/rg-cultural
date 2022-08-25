@@ -1,4 +1,4 @@
-@extends('admin-base')
+@extends('user-dashboard/dashboard-base')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/admin/main.css') }}">
 <link rel="stylesheet" href="{{ asset('css/admin/complete-registration.css') }}">

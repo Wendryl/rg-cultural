@@ -31,12 +31,12 @@ Route::post('/login', [UserController::class, 'loginSite']);
 
 Route::get('/home', function () {
     $user = auth()->user();
-    return view('user-dashboard', ['user' => $user]);
+    return view('user-dashboard/index', ['user' => $user]);
 })->middleware('auth');
 
 Route::get('/completar-cadastro', function () {
     $user = auth()->user();
-    return view('complete-registration', ['user' => $user]);
+    return view('user-dashboard/complete-registration', ['user' => $user]);
 })->middleware('auth');
 
 Route::put('/update', [UserController::class, 'updateSite'])->middleware('auth');
@@ -59,5 +59,5 @@ Route::get('/sobre_nos', function () {
 
 Route::get('/admin', function () {
     $users = User::paginate(15);
-    return view('admin', ['users' => $users]);
+    return view('admin-dashboard/index', ['users' => $users]);
 });
