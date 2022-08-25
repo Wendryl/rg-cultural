@@ -1,10 +1,10 @@
 @extends('user-dashboard/dashboard-base')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/admin/main.css') }}">
-<link rel="stylesheet" href="{{ asset('css/admin/complete-registration.css') }}">
+<link rel="stylesheet" href="{{ asset('css/user-dashboard/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/user-dashboard/complete-registration.css') }}">
 @endpush
 @push('scripts')
-<script src="{{ asset('js/complete-registration.js') }}"></script>
+<script src="{{ asset('js/user-dashboard/complete-registration.js') }}"></script>
 @endpush
 @section('body')
 <form class="form-card" action="/update" method="POST" enctype="multipart/form-data">

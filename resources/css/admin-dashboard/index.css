@@ -199,9 +199,6 @@ table.table .avatar {
 .modal .modal-dialog {
   max-width: 400px;
 }
-.modal .modal-header, .modal .modal-body, .modal .modal-footer {
-  padding: 20px 30px;
-}
 .modal .modal-content {
   border-radius: 3px;
   font-size: 14px;
@@ -235,10 +232,10 @@ table.table .avatar {
 }
 
 .edit-picture img {
-  width: 90px;
-  height: 90px;
   object-fit: cover;
   border-radius: 50%;
+  width: 128px;
+  height: 128px;
 }
 
 .edit-picture:hover img {
@@ -258,7 +255,7 @@ table.table .avatar {
   display: block
 }
 
-.form-card input[type="file"] {
+input[type="file"] {
   display: none;
 }
 svg {

@@ -1,5 +1,8 @@
 @extends('admin-dashboard/dashboard-base')
 @section('body')
+@push('scripts')
+<script src="{{ asset('js/admin-dashboard/index.js') }}"></script>
+@endpush
 <div class="container-xl">
   <div class="table-responsive">
     <div class="table-wrapper">
@@ -9,14 +12,14 @@
             <h2>Gerenciar <b>Usuários</b></h2>
           </div>
           <div class="col-sm-6">
-            <a href="#addEmployeeModal" class="btn btn-success d-flex justify-content-center align-items-center gap-1" data-toggle="modal">
+            <button class="btn btn-success d-flex justify-content-center align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#newUserModal">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.25a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z" clip-rule="evenodd" />
               </svg>
               <span>
                 Adicionar novo usuário
               </span>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -85,40 +88,65 @@
   </div>
 </div>
 <!-- Edit Modal HTML -->
-<div id="addEmployeeModal" class="modal fade">
+<div id="newUserModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <form>
         <div class="modal-header">
           <h4 class="modal-title">Adicionar Usuário</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="edit-picture" onclick="openFileInput()">
-            <img src="/img/profile.png" id="pic-preview">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
+          <div class="mb-2 row" onclick="openFileInput()">
+            <div class="col-5 edit-picture">
+              <input type="file" name="profile_picture" onchange="setProfilePic(event)" accept=".jpg, .jpeg, .png">
+              <img src="/img/profile.png" id="pic-preview">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <div class="col-7">
+              <div class="form-group my-2">
+                <label>Nome</label>
+                <input type="text" class="form-control" required>
+              </div>
+              <div class="form-group my-2">
+                <label>E-mail</label>
+                <input type="email" class="form-control">
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Nome</label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label>E-mail</label>
-            <input type="email" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label>Endereço</label>
-            <input class="form-control" required></input>
-          </div>
-          <div class="form-group">
+          <div class="form-group my-2">
             <label>Telefone</label>
             <input type="text" class="form-control" required>
           </div>
+          <div class="row my-2">
+            <div class="form-group col-4">
+              <label>CEP</label>
+              <input class="form-control"></input>
+            </div>
+            <div class="form-group col-8">
+              <label>Bairro</label>
+              <input class="form-control" required></input>
+            </div>
+          </div>
+          <div class="row my-2">
+            <div class="form-group col-9">
+              <label>Endereço</label>
+              <input class="form-control" required></input>
+            </div>
+            <div class="form-group col-3">
+              <label>Número</label>
+              <input class="form-control" required></input>
+            </div>
+          </div>
+          <div class="form-group my-2">
+            <label>Cidade</label>
+            <input class="form-control" required></input>
+          </div>
         </div>
         <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+          <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
           <input type="submit" class="btn btn-success" value="Salvar">
         </div>
       </form>
@@ -132,7 +160,7 @@
       <form>
         <div class="modal-header">
           <h4 class="modal-title">Editar Usuário</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="form-group">
