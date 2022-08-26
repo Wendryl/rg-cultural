@@ -317,6 +317,26 @@ class UserController extends Controller
         }
     }
 
+    public function destroySite(int $id)
+    {
+        try {
+
+            $user = User::find($id);
+
+            if($user == null)
+                return back()->with('error', 'Usuário não encontrado');
+
+            $user->delete();
+
+            return back()->with('message', 'Usuário excluído com sucesso!');
+
+        } catch (Exception $e) {
+            $error_message = $e->getMessage();
+            Log::error($error_message);
+            return back()->with('error', $error_message);
+        }
+    }
+
     public function loginSite(Request $request)
     {
         try {

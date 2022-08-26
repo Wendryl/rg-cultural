@@ -56,3 +56,13 @@ window.editUser = (user) => {
   editModal.show();
 
 }
+
+window.deleteUser = (user) => {
+  const confirmModal = new bootstrap.Modal('#deleteUserModal');
+  const message = document.querySelector('#deleteUserModal p.confirm-message');
+  const form = document.querySelector('#deleteUserModal form');
+  form.action = `/${user.id}`;
+
+  message.innerHTML = `Tem certeza que deseja excluir <strong>${user.name}</strong>?`;
+  confirmModal.show();
+}

@@ -44,6 +44,7 @@ Route::post('/new-user', [UserController::class, 'storeSite'])->middleware('auth
 
 Route::put('/update', [UserController::class, 'updateSite'])->middleware('auth');
 Route::put('/update/{id}', [UserController::class, 'updateSite'])->middleware('auth');
+Route::delete('/{id}', [UserController::class, 'destroySite'])->middleware('auth');
 
 Route::get('/logout', [UserController::class, 'logoutSite']);
 

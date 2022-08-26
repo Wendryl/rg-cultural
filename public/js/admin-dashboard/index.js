@@ -63,5 +63,14 @@ window.editUser = function (user) {
   if (user.profile_picture) profilePic.src = user.profile_picture;
   editModal.show();
 };
+
+window.deleteUser = function (user) {
+  var confirmModal = new bootstrap.Modal('#deleteUserModal');
+  var message = document.querySelector('#deleteUserModal p.confirm-message');
+  var form = document.querySelector('#deleteUserModal form');
+  form.action = "/".concat(user.id);
+  message.innerHTML = "Tem certeza que deseja excluir <strong>".concat(user.name, "</strong>?");
+  confirmModal.show();
+};
 /******/ })()
 ;
