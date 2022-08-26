@@ -45,6 +45,8 @@ window.getCep = function (e) {
     streetInput.value = result.logradouro;
     neighborhoodInput.value = result.bairro;
     cityInput.value = result.localidade;
+  })["catch"](function (err) {
+    return e.target.removeAttribute('disabled');
   });
 };
 /******/ })()

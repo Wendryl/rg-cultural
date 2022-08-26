@@ -39,6 +39,8 @@ Route::get('/completar-cadastro', function () {
     return view('user-dashboard/complete-registration', ['user' => $user]);
 })->middleware('auth');
 
+Route::post('/new-user', [UserController::class, 'storeSite'])->middleware('auth');
+
 Route::put('/update', [UserController::class, 'updateSite'])->middleware('auth');
 
 Route::get('/logout', [UserController::class, 'logoutSite']);

@@ -33,5 +33,5 @@ window.getCep = (e) => {
         neighborhoodInput.value = result.bairro;
         cityInput.value = result.localidade;
       }
-    )
+    ).catch(err => e.target.removeAttribute('disabled'))
 }

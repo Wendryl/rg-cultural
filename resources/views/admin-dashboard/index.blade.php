@@ -91,7 +91,7 @@
 <div id="newUserModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form method="POST" action="/new-user">
+      <form method="POST" action="/new-user" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="created_by" value="admin">
         <div class="modal-header">
@@ -113,8 +113,8 @@
                 <input type="text" class="form-control" required name="name">
               </div>
               <div class="form-group my-2">
-                <label>E-mail</label>
-                <input type="email" class="form-control" name="email">
+                <label>E-mail*</label>
+                <input type="email" class="form-control" name="email" required>
               </div>
             </div>
           </div>

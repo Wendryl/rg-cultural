@@ -119,12 +119,18 @@ class UserController extends Controller
 
             $user->save();
 
-            if ($request->isMethod('post')) {
+            if ($request->created_by == 'admin')
+                return back()->with('message', 'Usuário cadastrado sucesso!');
+
+            if ($request->isMethod('post'))
                 return redirect('login')->with('message', 'Usuário cadastrado sucesso!');
-            }
 
         } catch (Exception $e) {
-            Log::error($e->getMessage());
+            $error_message = $e->getMessage();
+            Log::error($error_message);
+            if ($request->created_by == 'admin')
+                return back()->with('error', "Falha ao cadastrar usuário ($error_message)");
+
             return redirect('registrar')->with('error', $e->getMessage());
         }
     }
@@ -423,7 +429,7 @@ class UserController extends Controller
         if (!property_exists($user_data, 'email') && !$user_data->has('email'))
             throw new Exception('O campo e-mail é obrigatório');
 
-        if (!property_exists($user_data, 'password') && !$user_data->has('password'))
+        if (!property_exists($user_data, 'password') && !$user_data->has('password') && !$user_data->has('created_by'))
             throw new Exception('O campo senha é obrigatório');
 
         $user = User::where('email', '=', $user_data->email)->get();
