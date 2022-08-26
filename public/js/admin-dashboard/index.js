@@ -30,5 +30,22 @@ window.setProfilePic = function (e) {
   var body = new FormData();
   body.append('profile_picture', file);
 };
+
+window.getCep = function (e) {
+  e.target.setAttribute('disabled', true);
+  var cep = e.target.value;
+  var streetInput = document.querySelector('input[name="street"]');
+  var neighborhoodInput = document.querySelector('input[name="neighborhood"]');
+  var cityInput = document.querySelector('input[name="city"]');
+  fetch("https://viacep.com.br/ws/".concat(cep, "/json/")).then(function (response) {
+    return response.json();
+  }).then(function (result) {
+    e.target.removeAttribute('disabled');
+    if (result.erro) return;
+    streetInput.value = result.logradouro;
+    neighborhoodInput.value = result.bairro;
+    cityInput.value = result.localidade;
+  });
+};
 /******/ })()
 ;

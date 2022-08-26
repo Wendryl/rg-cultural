@@ -12,3 +12,26 @@ window.setProfilePic = (e) => {
   const body = new FormData();
   body.append('profile_picture', file);
 };
+
+window.getCep = (e) => {
+  e.target.setAttribute('disabled', true);
+
+  const cep = e.target.value;
+  const streetInput = document.querySelector('input[name="street"]');
+  const neighborhoodInput = document.querySelector('input[name="neighborhood"]');
+  const cityInput = document.querySelector('input[name="city"]');
+
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then(
+      response => response.json()
+    ).then(
+      result => {
+        e.target.removeAttribute('disabled');
+        if (result.erro)
+          return
+        streetInput.value = result.logradouro;
+        neighborhoodInput.value = result.bairro;
+        cityInput.value = result.localidade;
+      }
+    )
+}

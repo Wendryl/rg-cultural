@@ -91,14 +91,16 @@
 <div id="newUserModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form>
+      <form method="POST" action="/new-user">
+        @csrf
+        <input type="hidden" name="created_by" value="admin">
         <div class="modal-header">
           <h4 class="modal-title">Adicionar Usuário</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-2 row" onclick="openFileInput()">
-            <div class="col-5 edit-picture">
+          <div class="mb-2 row">
+            <div class="col-5 edit-picture" onclick="openFileInput()">
               <input type="file" name="profile_picture" onchange="setProfilePic(event)" accept=".jpg, .jpeg, .png">
               <img src="/img/profile.png" id="pic-preview">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
@@ -107,42 +109,42 @@
             </div>
             <div class="col-7">
               <div class="form-group my-2">
-                <label>Nome</label>
-                <input type="text" class="form-control" required>
+                <label>Nome*</label>
+                <input type="text" class="form-control" required name="name">
               </div>
               <div class="form-group my-2">
                 <label>E-mail</label>
-                <input type="email" class="form-control">
+                <input type="email" class="form-control" name="email">
               </div>
             </div>
           </div>
           <div class="form-group my-2">
-            <label>Telefone</label>
-            <input type="text" class="form-control" required>
+            <label>Telefone*</label>
+            <input type="text" class="form-control" required name="phone">
           </div>
           <div class="row my-2">
             <div class="form-group col-4">
               <label>CEP</label>
-              <input class="form-control"></input>
+              <input class="form-control" name="cep" onblur="getCep(event)" maxlength="8"></input>
             </div>
             <div class="form-group col-8">
               <label>Bairro</label>
-              <input class="form-control" required></input>
+              <input class="form-control" name="neighborhood"></input>
             </div>
           </div>
           <div class="row my-2">
             <div class="form-group col-9">
               <label>Endereço</label>
-              <input class="form-control" required></input>
+              <input class="form-control" name="street"></input>
             </div>
             <div class="form-group col-3">
               <label>Número</label>
-              <input class="form-control" required></input>
+              <input class="form-control" name="number"></input>
             </div>
           </div>
           <div class="form-group my-2">
-            <label>Cidade</label>
-            <input class="form-control" required></input>
+            <label>Cidade*</label>
+            <input class="form-control" required name="city"></input>
           </div>
         </div>
         <div class="modal-footer">
