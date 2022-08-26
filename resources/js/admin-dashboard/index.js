@@ -41,6 +41,8 @@ window.editUser = (user) => {
   const inputs = Array.from(document.querySelectorAll('#editUserModal input'));
   const profilePic = document.querySelector('#editUserModal img');
 
+  profilePic.src = '/img/profile.png'
+
   inputs.forEach(input => {
     if (input.type != 'file' && user[input.name])
       input.value = user[input.name];
