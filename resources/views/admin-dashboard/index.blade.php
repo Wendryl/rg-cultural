@@ -162,6 +162,7 @@
       <form method="POST" action="/update" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        <input type="hidden" name="created_by" value="admin">
         <div class="modal-header">
           <h4 class="modal-title">Adicionar Usuário</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -182,7 +183,7 @@
               </div>
               <div class="form-group my-2">
                 <label>E-mail*</label>
-                <input type="email" class="form-control" name="email" required>
+                <input type="email" class="form-control" name="email" disabled>
               </div>
             </div>
           </div>

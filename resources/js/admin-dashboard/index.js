@@ -40,6 +40,8 @@ window.editUser = (user) => {
   const editModal = new bootstrap.Modal('#editUserModal');
   const inputs = Array.from(document.querySelectorAll('#editUserModal input'));
   const profilePic = document.querySelector('#editUserModal img');
+  const form = document.querySelector('#editUserModal form');
+  form.action = `/update/${user.id}`;
 
   profilePic.src = '/img/profile.png'
 

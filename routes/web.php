@@ -42,6 +42,7 @@ Route::get('/completar-cadastro', function () {
 Route::post('/new-user', [UserController::class, 'storeSite'])->middleware('auth');
 
 Route::put('/update', [UserController::class, 'updateSite'])->middleware('auth');
+Route::put('/update/{id}', [UserController::class, 'updateSite'])->middleware('auth');
 
 Route::get('/logout', [UserController::class, 'logoutSite']);
 

@@ -54,6 +54,8 @@ window.editUser = function (user) {
   var editModal = new bootstrap.Modal('#editUserModal');
   var inputs = Array.from(document.querySelectorAll('#editUserModal input'));
   var profilePic = document.querySelector('#editUserModal img');
+  var form = document.querySelector('#editUserModal form');
+  form.action = "/update/".concat(user.id);
   profilePic.src = '/img/profile.png';
   inputs.forEach(function (input) {
     if (input.type != 'file' && user[input.name]) input.value = user[input.name];

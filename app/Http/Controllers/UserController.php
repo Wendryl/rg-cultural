@@ -230,11 +230,14 @@ class UserController extends Controller
         }
     }
 
-    public function updateSite(Request $request)
+    public function updateSite(Request $request, int $id = null)
     {
         try {
 
-            $user = User::find(auth()->user()->id);
+            if (is_null($id))
+                $user = User::find(auth()->user()->id);
+            else
+                $user = User::find($id);
 
             $user['name'] = $request->input('name');
             $user['phone'] = $request->input('phone') ?? null;
@@ -246,6 +249,9 @@ class UserController extends Controller
             if (!is_null($request->profile_picture))
                 $user['profile_picture'] = $this->_saveProfilePic($request, $user->name);
             $user->save();
+
+            if ($request->created_by == 'admin')
+                return back()->with('message', 'Usuário atualizado sucesso!');
 
             return redirect('completar-cadastro')->with('message', 'Usuário atualizado com sucesso!');
 
