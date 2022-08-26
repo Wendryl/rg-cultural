@@ -15,8 +15,8 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-window.openFileInput = function () {
-  var fileField = document.querySelector('input[type="file"]');
+window.openFileInput = function (modalId) {
+  var fileField = document.querySelector("".concat(modalId, " input[type=\"file\"]"));
   fileField.click();
 };
 

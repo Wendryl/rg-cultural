@@ -1,10 +1,10 @@
-window.openFileInput = () => {
-  const fileField = document.querySelector('input[type="file"]');
+window.openFileInput = (modalId) => {
+  const fileField = document.querySelector(`${modalId} input[type="file"]`);
   fileField.click();
 };
 
-window.setProfilePic = (e) => {
-  const img = document.querySelector("#pic-preview");
+window.setProfilePic = (e, imgSelector) => {
+  const img = document.querySelector(imgSelector);
   const [file] = e.target.files;
 
   if (file) img.src = URL.createObjectURL(file);
