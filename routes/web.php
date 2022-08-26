@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +62,6 @@ Route::get('/sobre_nos', function () {
 });
 
 Route::get('/admin', function () {
-    $users = User::paginate(15);
+    $users = DB::table('users')->orderByDesc('created_at')->paginate(15);
     return view('admin-dashboard/index', ['users' => $users]);
 });
