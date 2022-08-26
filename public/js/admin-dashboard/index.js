@@ -20,8 +20,8 @@ window.openFileInput = function () {
   fileField.click();
 };
 
-window.setProfilePic = function (e) {
-  var img = document.querySelector("#pic-preview");
+window.setProfilePic = function (e, imgSelector) {
+  var img = document.querySelector(imgSelector);
 
   var _e$target$files = _slicedToArray(e.target.files, 1),
       file = _e$target$files[0];
@@ -48,6 +48,17 @@ window.getCep = function (e) {
   })["catch"](function (err) {
     return e.target.removeAttribute('disabled');
   });
+};
+
+window.editUser = function (user) {
+  var editModal = new bootstrap.Modal('#editUserModal');
+  var inputs = Array.from(document.querySelectorAll('#editUserModal input'));
+  var profilePic = document.querySelector('#editUserModal img');
+  inputs.forEach(function (input) {
+    if (input.type != 'file' && user[input.name]) input.value = user[input.name];
+  });
+  if (user.profile_picture) profilePic.src = user.profile_picture;
+  editModal.show();
 };
 /******/ })()
 ;

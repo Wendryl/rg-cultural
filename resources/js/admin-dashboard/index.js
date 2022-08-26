@@ -35,3 +35,20 @@ window.getCep = (e) => {
       }
     ).catch(err => e.target.removeAttribute('disabled'))
 }
+
+window.editUser = (user) => {
+  const editModal = new bootstrap.Modal('#editUserModal');
+  const inputs = Array.from(document.querySelectorAll('#editUserModal input'));
+  const profilePic = document.querySelector('#editUserModal img');
+
+  inputs.forEach(input => {
+    if (input.type != 'file' && user[input.name])
+      input.value = user[input.name];
+  });
+
+  if (user.profile_picture)
+    profilePic.src = user.profile_picture;
+
+  editModal.show();
+
+}

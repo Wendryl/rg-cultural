@@ -60,7 +60,7 @@
               </td>
               <td>
                 <div class="d-flex">
-                  <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editEmployeeModal">
+                  <button class="btn btn-sm btn-warning" onclick="editUser({{ $user }})">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                       <path fill-rule="evenodd" d="M5.433 13.916l1.262-3.154a4 4 0 01.885-1.343L14.5 2.5a2.121 2.121 0 113 3l-6.92 6.919c-.383.383-.84.684-1.343.885l-3.154 1.262a.5.5 0 01-.65-.65zM2.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H3.75A2.75 2.75 0 001 5.75v10.5A2.75 2.75 0 003.75 19h10.5A2.75 2.75 0 0017 16.25V10a.75.75 0 00-1.5 0v6.25c0 .69-.56 1.25-1.25 1.25H3.75c-.69 0-1.25-.56-1.25-1.25V5.75z" clip-rule="evenodd" />
                     </svg>
@@ -87,7 +87,7 @@
     </div>
   </div>
 </div>
-<!-- Edit Modal HTML -->
+<!-- Create Modal HTML -->
 <div id="newUserModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -156,35 +156,62 @@
   </div>
 </div>
 <!-- Edit Modal HTML -->
-<div id="editEmployeeModal" class="modal fade">
+<div id="editUserModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form>
+      <form method="POST" action="/update" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
         <div class="modal-header">
-          <h4 class="modal-title">Editar Usuário</h4>
+          <h4 class="modal-title">Adicionar Usuário</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="form-group">
-            <label>Nome</label>
-            <input type="text" class="form-control" required>
+          <div class="mb-2 row">
+            <div class="col-5 edit-picture" onclick="openFileInput()">
+              <input type="file" name="profile_picture" onchange="setProfilePic(event, '#pic-preview-edit')" accept=".jpg, .jpeg, .png">
+              <img src="/img/profile.png" id="pic-preview-edit">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <div class="col-7">
+              <div class="form-group my-2">
+                <label>Nome*</label>
+                <input type="text" class="form-control" required name="name">
+              </div>
+              <div class="form-group my-2">
+                <label>E-mail*</label>
+                <input type="email" class="form-control" name="email" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group my-2">
+            <label>Telefone*</label>
+            <input type="text" class="form-control" required name="phone">
           </div>
           <div class="form-group">
-            <label>E-mail</label>
-            <input type="email" class="form-control" required>
+            <label>Bairro</label>
+            <input class="form-control" name="neighborhood"></input>
           </div>
-          <div class="form-group">
-            <label>Endereço</label>
-            <input class="form-control" required></input>
+          <div class="row my-2">
+            <div class="form-group col-9">
+              <label>Endereço</label>
+              <input class="form-control" name="street"></input>
+            </div>
+            <div class="form-group col-3">
+              <label>Número</label>
+              <input class="form-control" name="number"></input>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Telefone</label>
-            <input type="text" class="form-control" required>
+          <div class="form-group my-2">
+            <label>Cidade*</label>
+            <input class="form-control" required name="city"></input>
           </div>
         </div>
         <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-          <input type="submit" class="btn btn-info" value="Salvar">
+          <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+          <input type="submit" class="btn btn-success" value="Salvar">
         </div>
       </form>
     </div>
