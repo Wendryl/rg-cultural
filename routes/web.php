@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Public site routes
 Route::get('/', function () {
     return view('index');
 });
@@ -25,28 +26,6 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::post('/login', [UserController::class, 'loginSite']);
-
-Route::get('/home', function () {
-    $user = auth()->user();
-
-    if ($user->type == 1)
-        return redirect('admin');
-
-    return view('user-dashboard/index', ['user' => $user]);
-})->middleware('auth');
-
-Route::get('/complete-cadastro', function () {
-    $user = auth()->user();
-    return view('user-dashboard/complete-registration', ['user' => $user]);
-})->middleware('auth');
-
-Route::post('/new-user', [UserController::class, 'storeSite'])->middleware('auth');
-
-Route::put('/update', [UserController::class, 'updateSite'])->middleware('auth');
-Route::put('/update/{id}', [UserController::class, 'updateSite'])->middleware('auth');
-Route::delete('/{id}', [UserController::class, 'destroySite'])->middleware('auth');
-
-Route::get('/logout', [UserController::class, 'logoutSite']);
 
 Route::get('/register', function () {
     return view('cadastro');
@@ -62,12 +41,40 @@ Route::get('/about', function () {
     return view('sobre_nos');
 });
 
-Route::get('/admin', function () {
-    $curr_user = auth()->user();
-    $users = DB::table('users')->orderByDesc('created_at')->paginate(15);
+// Restricted areas routes (User/Admin)
+Route::middleware('auth')->group(function () {
 
-    if ($curr_user->type != 1)
+    // Common User Routes
+    Route::get('/home', function () {
+        $user = auth()->user();
+
+        if ($user->type == 1)
+        return redirect('admin');
+
+        return view('user-dashboard/index', ['user' => $user]);
+    });
+
+    Route::get('/complete-registration', function () {
+        $user = auth()->user();
+        return view('user-dashboard/complete-registration', ['user' => $user]);
+    });
+
+    // Admin Routes
+    Route::get('/admin', function () {
+        $curr_user = auth()->user();
+        $users = DB::table('users')->orderByDesc('created_at')->paginate(15);
+
+        if ($curr_user->type != 1)
         return redirect('home');
 
-    return view('admin-dashboard/index', ['users' => $users]);
+        return view('admin-dashboard/index', ['users' => $users]);
+    });
+
+    Route::post('/new-user', [UserController::class, 'storeSite']);
+
+    Route::put('/update', [UserController::class, 'updateSite']);
+    Route::put('/update/{id}', [UserController::class, 'updateSite']);
+    Route::delete('/{id}', [UserController::class, 'destroySite']);
+
+    Route::get('/logout', [UserController::class, 'logoutSite']);
 });
