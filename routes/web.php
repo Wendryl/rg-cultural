@@ -20,10 +20,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/index', function () {
-    return view('index');
-});
-
 Route::get('/login', function () {
     return view('login');
 })->name('login');
@@ -32,10 +28,14 @@ Route::post('/login', [UserController::class, 'loginSite']);
 
 Route::get('/home', function () {
     $user = auth()->user();
+
+    if ($user->type == 1)
+        return redirect('admin');
+
     return view('user-dashboard/index', ['user' => $user]);
 })->middleware('auth');
 
-Route::get('/completar-cadastro', function () {
+Route::get('/complete-cadastro', function () {
     $user = auth()->user();
     return view('user-dashboard/complete-registration', ['user' => $user]);
 })->middleware('auth');
@@ -48,21 +48,26 @@ Route::delete('/{id}', [UserController::class, 'destroySite'])->middleware('auth
 
 Route::get('/logout', [UserController::class, 'logoutSite']);
 
-Route::get('/registrar', function () {
+Route::get('/register', function () {
     return view('cadastro');
 });
 
 Route::post('/register', [UserController::class, 'storeSite']);
 
-Route::get('/descobrir', function () {
+Route::get('/discover', function () {
     return view('descobrir');
 });
 
-Route::get('/sobre_nos', function () {
+Route::get('/about', function () {
     return view('sobre_nos');
 });
 
 Route::get('/admin', function () {
+    $curr_user = auth()->user();
     $users = DB::table('users')->orderByDesc('created_at')->paginate(15);
+
+    if ($curr_user->type != 1)
+        return redirect('home');
+
     return view('admin-dashboard/index', ['users' => $users]);
 });
