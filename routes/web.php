@@ -70,6 +70,7 @@ Route::middleware('auth')->group(function () {
         return view('admin-dashboard/index', ['users' => $users]);
     });
 
+    Route::get('/new-user', [UserController::class, 'create']);
     Route::post('/new-user', [UserController::class, 'storeSite']);
 
     Route::put('/update', [UserController::class, 'updateSite']);
