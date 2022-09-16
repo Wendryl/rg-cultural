@@ -25,8 +25,8 @@
                 <a class="nav-link" href="/logout">Logout</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Buscar usuário" aria-label="Buscar usuário">
+            <form class="d-flex" role="search" action="/admin">
+              <input class="form-control me-2" type="search" name="s" placeholder="Buscar usuário" aria-label="Buscar usuário">
               <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
             </form>
           </div>

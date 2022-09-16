@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,9 +61,15 @@ Route::middleware('auth')->group(function () {
     });
 
     // Admin Routes
-    Route::get('/admin', function () {
+    Route::get('/admin', function (Request $request) {
         $curr_user = auth()->user();
-        $users = DB::table('users')->orderByDesc('created_at')->paginate(15);
+
+        $search_param = $request->query('s');
+        if (!is_null($search_param)) {
+            $users = DB::table('users')->where("name", 'like', "%$search_param%")->orderByDesc('created_at')->paginate(15);
+        } else {
+            $users = DB::table('users')->orderByDesc('created_at')->paginate(15);
+        }
 
         if ($curr_user->type != 1)
         return redirect('home');
