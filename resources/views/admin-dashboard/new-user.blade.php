@@ -4,11 +4,11 @@
     <h2>Novo <b>Usuário</b></h2>
   </div>
 </div>
-<div class="bg-white p-3">
+<div class="bg-white p-3 mb-3">
   <form>
     <div class="row mb-2">
       <div class="col-6">
-        <h4>Informações pessoais</h4>
+        <h4 class="fw-bold">Informações pessoais</h4>
         <div>
           <div class="d-flex gap-4 align-items-center">
             <img src="/img/profile.png" />
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="col-6">
-        <h4>Contato</h4>
+        <h4 class="fw-bold">Contato</h4>
         <div class="mb-2">
           <label for="phone" class="form-label">Telefone*</label>
           <input
@@ -98,11 +98,11 @@
     </div>
     <div class="row">
       <div class="col-6">
-        <h4>Galeria</h4>
+        <h4 class="fw-bold">Galeria</h4>
         <div>TODO</div>
       </div>
       <div class="col-6">
-        <h4>Localização</h4>
+        <h4 class="fw-bold">Localização</h4>
         <div class="mb-2">
           <label for="city" class="form-label">Cidade*</label>
           <input
@@ -148,5 +148,9 @@
       </div>
     </div>
   </form>
+  <div class="d-flex justify-content-end my-2 gap-2">
+    <a href="/admin" class="btn"> Voltar </a>
+    <button class="btn btn-success">Salvar</button>
+  </div>
 </div>
 @endsection
