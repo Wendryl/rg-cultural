@@ -1,0 +1,7 @@
+.pic-thumb {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+

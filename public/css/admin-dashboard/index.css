@@ -251,9 +251,6 @@ table.table .avatar {
   display: block
 }
 
-input[type="file"] {
-  display: none;
-}
 svg {
   width: 20px;
 }
