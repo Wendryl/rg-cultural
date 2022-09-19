@@ -24,3 +24,5 @@ mix.js('resources/js/user-dashboard/complete-registration', 'public/js/user-dash
 
 mix.js('resources/js/admin-dashboard/index', 'public/js/admin-dashboard')
   .postCss('resources/css/admin-dashboard/index.css', 'public/css/admin-dashboard');
+
+mix.js('resources/js/admin-dashboard/new-user', 'public/js/admin-dashboard');

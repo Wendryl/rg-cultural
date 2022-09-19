@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use DateTime;
 use Exception;
@@ -47,7 +48,9 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin-dashboard/new-user');
+        return view('admin-dashboard/new-user', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**

@@ -1,4 +1,14 @@
-@extends('admin-dashboard/dashboard-base') @section('body')
+@extends('admin-dashboard/dashboard-base')
+@section('body')
+@push('scripts')
+  <script src="{{ asset('js/admin-dashboard/new-user.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/js/standalone/selectize.min.js" integrity="sha512-pgmLgtHvorzxpKra2mmibwH/RDAVMlOuqU98ZjnyZrOZxgAR8hwL8A02hQFWEK25V40/9yPYb/Zc+kyWMplgaA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endpush
+@push('styles')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/css/selectize.bootstrap5.css" integrity="sha512-wD3+yEMEGhx4+wKKWd0bNGCI+fxhDsK7znFYPvf2wOVxpr7gWnf4+BKphWnUCzf49AUAF6GYbaCBws1e5XHSsg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/css/selectize.default.min.css" integrity="sha512-vKflY6VSoNmvZitwWFIKY6r8j1R8DJwAoM25PFH2EzF49j9gka2gNYMAf31y0Ct++phlsyJSX+9zi/vO1aSSdw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+@endpush
 <div class="row page-title mx-0">
   <div class="col-sm-6">
     <h2>Novo <b>Usuário</b></h2>
@@ -14,41 +24,41 @@
             <img src="/img/profile.png" />
             <div class="d-flex flex-column w-100">
               <div class="mb-2">
-                <label for="name" class="form-label"
-                                  >Nome*</label
-                                >
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="name"
-                                    id="name"
-                                    placeholder="John Doe"
-                                    />
+                <label for="name" class="form-label">Nome*</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    id="name"
+                    placeholder="John Doe"
+                    />
               </div>
                   <div>
-                    <label for="email" class="form-label"
-                                       >Email*</label
-                                     >
-                                     <input
-                                         type="email"
-                                         class="form-control"
-                                         name="email"
-                                         id="email"
-                                         placeholder="johndoe@email.com"
-                                         />
+                    <label for="email" class="form-label">Email*</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        id="email"
+                        placeholder="johndoe@email.com"
+                        />
                   </div>
             </div>
           </div>
           <div class="my-3">
-            <label for="categories" class="form-label"
-                                    >Categorias</label
-                                  >
-                                  <select class="form-select" name="categories" id="categories">
-                                    <option selected>Selecione as categorias</option>
-                                    <option value="1">Música</option>
-                                    <option value="2">Padaria</option>
-                                    <option value="3">Morcego</option>
-                                  </select>
+            <label for="categories" class="form-label">Categorias</label>
+            <select
+                name="categories"
+                id="categories"
+                multiple
+                placeholder="Insira as categorias"
+                >
+              @foreach ($categories as $category)
+                <option value="{{ $category->id }}">
+                {{ $category->name }}
+                </option>
+              @endforeach
+            </select>
           </div>
         </div>
       </div>
