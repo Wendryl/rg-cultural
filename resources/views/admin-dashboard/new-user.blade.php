@@ -6,6 +6,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/js/standalone/selectize.min.js" integrity="sha512-pgmLgtHvorzxpKra2mmibwH/RDAVMlOuqU98ZjnyZrOZxgAR8hwL8A02hQFWEK25V40/9yPYb/Zc+kyWMplgaA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endpush
 @push('styles')
+  <link rel="stylesheet" href="{{ asset('css/admin-dashboard/new-user.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/css/selectize.bootstrap5.css" integrity="sha512-wD3+yEMEGhx4+wKKWd0bNGCI+fxhDsK7znFYPvf2wOVxpr7gWnf4+BKphWnUCzf49AUAF6GYbaCBws1e5XHSsg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/css/selectize.default.min.css" integrity="sha512-vKflY6VSoNmvZitwWFIKY6r8j1R8DJwAoM25PFH2EzF49j9gka2gNYMAf31y0Ct++phlsyJSX+9zi/vO1aSSdw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 @endpush
@@ -31,6 +32,7 @@
                     name="name"
                     id="name"
                     placeholder="John Doe"
+                    required
                     />
               </div>
                   <div>
@@ -41,6 +43,7 @@
                         name="email"
                         id="email"
                         placeholder="johndoe@email.com"
+                        required
                         />
                   </div>
             </div>
@@ -72,6 +75,7 @@
               name="phone"
               id="phone"
               placeholder="12977884499"
+              required
               />
         </div>
         <div class="mb-2">
@@ -109,7 +113,27 @@
     <div class="row">
       <div class="col-6">
         <h4 class="fw-bold">Galeria</h4>
-        <div>TODO</div>
+        <div class="d-flex gap-2">
+          <input
+              type="file"
+              id="pics"
+              name="pics[]"
+              class="form-control"
+              multiple
+              onchange="handleFileInput(event)"
+              >
+              <button
+                  class="btn btn-light"
+                  onclick="resetControl(event, '#pics')"
+                  type="button"
+                  id="reset-file-input"
+                  disabled
+                  >
+                  Limpar
+              </button>
+        </div>
+        <div id="img-preview" class="d-flex flex-wrap gap-2 mt-2">
+        </div>
       </div>
       <div class="col-6">
         <h4 class="fw-bold">Localização</h4>
@@ -121,6 +145,7 @@
               name="city"
               id="city"
               placeholder="Taubaté"
+              required
               />
         </div>
         <div class="mb-2">
@@ -157,10 +182,10 @@
         </div>
       </div>
     </div>
+    <div class="d-flex justify-content-end my-2 gap-2">
+      <a href="/admin" class="btn"> Voltar </a>
+      <button type="submit" class="btn btn-success">Salvar</button>
+    </div>
   </form>
-  <div class="d-flex justify-content-end my-2 gap-2">
-    <a href="/admin" class="btn"> Voltar </a>
-    <button class="btn btn-success">Salvar</button>
-  </div>
 </div>
 @endsection
