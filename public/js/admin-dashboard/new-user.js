@@ -9,7 +9,7 @@ window.onload = function () {
 
 function initializeSelectize() {
   $(function () {
-    $("#categories").selectize({
+    var selectize = $("#categories").selectize({
       create: function create(input) {
         return {
           value: input,
@@ -21,6 +21,9 @@ function initializeSelectize() {
           return '<div class="create">Adicionar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
         }
       }
+    });
+    selectize.on('change', function () {
+      document.querySelector('input[name="user_categories"]').value = JSON.stringify(selectize[0].selectize.getValue());
     });
   });
 }
