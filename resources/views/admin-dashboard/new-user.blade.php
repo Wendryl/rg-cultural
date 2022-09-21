@@ -27,7 +27,7 @@
             <div class="edit-picture" onclick="handlePictureClick('#profile-pic')">
               <input
                   type="file"
-                  name="profile_pic"
+                  name="profile_picture"
                   class="d-none"
                   id="profile-pic"
                   onchange="setProfilePicture(event, '#profile-pic-preview')"
@@ -132,7 +132,7 @@
           <input
               type="file"
               id="pics"
-              name="pics[]"
+              name="gallery_pictures[]"
               class="form-control"
               multiple
               onchange="handleFileInput(event)"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\GalleryPicture;
 use App\Models\User;
 use DateTime;
 use Exception;
@@ -122,6 +123,15 @@ class UserController extends Controller
                 $user->profile_picture = $this->_saveProfilePic($request, $request->name);
 
             $user->save();
+
+            if (!is_null($request->gallery_pictures)) {
+                foreach($request->gallery_pictures as $i => $pic) {
+                    new GalleryPicture([
+                        'user_id' => $user->id,
+                        'url' => $this->_saveGalleryPic($pic, $user->name)
+                    ]);
+                }
+            }
 
             if ($request->created_by == 'admin')
                 return redirect('admin')->with('message', 'Usuário cadastrado sucesso!');
@@ -447,6 +457,15 @@ class UserController extends Controller
         $img_path = $request->file('profile_picture');
         $save_path = 'upload/profile-pics/' . Str::slug($user_name) . '.jpg';
         $resized_img = Image::make($img_path)->fit(300);
+        $resized_img->save($save_path);
+        return $save_path;
+    }
+
+    private function _saveGalleryPic($img, $user_name): string
+    {
+        $img_path = $img;
+        $save_path = 'upload/gallery-pics/' . Str::random(6) . '.jpg';
+        $resized_img = Image::make($img_path);
         $resized_img->save($save_path);
         return $save_path;
     }
