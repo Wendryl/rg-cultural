@@ -4,7 +4,7 @@ window.onload = () => {
 
 function initializeSelectize() {
   $(function () {
-    $("#categories").selectize({
+    const selectize = $("#categories").selectize({
       create: (input) => {
         return {
           value: input,
@@ -17,6 +17,10 @@ function initializeSelectize() {
         }
       }
     });
+
+    selectize.on('change', () => {
+      document.querySelector('input[name="user_categories"]').value = JSON.stringify(selectize[0].selectize.getValue());
+    })
   });
 }
 

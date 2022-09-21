@@ -64,8 +64,8 @@
           </div>
           <div class="my-3">
             <label for="categories" class="form-label">Categorias</label>
+            <input type="text" name="user_categories" class="d-none">
             <select
-                name="categories"
                 id="categories"
                 multiple
                 placeholder="Insira as categorias"

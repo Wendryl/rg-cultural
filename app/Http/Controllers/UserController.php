@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Category;
 use App\Models\GalleryPicture;
 use App\Models\User;
@@ -130,6 +131,35 @@ class UserController extends Controller
                         'user_id' => $user->id,
                         'url' => $this->_saveGalleryPic($pic, $user->name)
                     ]);
+                }
+            }
+
+            if (!is_null($request->user_categories)) {
+                foreach(json_decode($request->user_categories) as $category) {
+                    if (is_numeric($category)) {
+                        $category_name = Category::find($category)->get('name');
+                        $activity = new Activity([
+                            'user_id' => $user->id,
+                            'title' => $category_name,
+                            'category_id' => $category,
+                            'approved' => true,
+                            'type' => 0,
+                        ]);
+
+                        $activity->save();
+                    } else {
+                        $new_category = new Category(['name' => $category]);
+                        $new_category->save();
+                        $activity = new Activity([
+                            'user_id' => $user->id,
+                            'title' => $new_category->name,
+                            'category_id' => $new_category->id,
+                            'approved' => true,
+                            'type' => 0,
+                        ]);
+
+                        $activity->save();
+                    }
                 }
             }
 
