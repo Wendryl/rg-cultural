@@ -42,3 +42,16 @@ window.handleFileInput = (event) => {
       wrapper.append(img);
     });
 }
+
+window.handlePictureClick = (inputSelector) => {
+  document.querySelector(inputSelector).click();
+}
+
+window.setProfilePicture = (event, previewSelector) => {
+  const files = event.target.files;
+
+  if (files.length > 0) {
+    const img = URL.createObjectURL(files[0]);
+    document.querySelector(previewSelector).src = img;
+  }
+}
