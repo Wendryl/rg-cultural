@@ -43,5 +43,18 @@ window.handleFileInput = function (event) {
     wrapper.append(img);
   });
 };
+
+window.handlePictureClick = function (inputSelector) {
+  document.querySelector(inputSelector).click();
+};
+
+window.setProfilePicture = function (event, previewSelector) {
+  var files = event.target.files;
+
+  if (files.length > 0) {
+    var img = URL.createObjectURL(files[0]);
+    document.querySelector(previewSelector).src = img;
+  }
+};
 /******/ })()
 ;
