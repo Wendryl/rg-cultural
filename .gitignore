@@ -3,6 +3,7 @@
 /public/storage
 /public/upload/cultural-column
 /public/upload/profile-pics
+/public/upload/gallery-pics
 /storage/*.key
 /vendor
 .env
