@@ -87,6 +87,7 @@
               name="phone"
               id="phone"
               placeholder="12977884499"
+              maxlength="11"
               required
               />
         </div>
