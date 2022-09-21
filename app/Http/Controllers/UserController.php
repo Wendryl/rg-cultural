@@ -110,6 +110,9 @@ class UserController extends Controller
                 'email' => $request->email,
                 'type' => '0',
                 'phone' => $request->phone ?? null,
+                'facebook' => $request->facebook ?? null,
+                'instagram' => $request->instagram ?? null,
+                'twitter' => $request->twitter ?? null,
                 'access' => (new DateTime())->format('Y-m-d\TH:i:s.u'),
                 'street' => $request->street ?? null,
                 'number' => $request->number ?? null,
@@ -118,7 +121,11 @@ class UserController extends Controller
                 'uf' => $request->uf ?? null
             ]);
 
-            $user->password = Hash::make($request->password);
+            if($request->created_by === 'admin') {
+                $user->password = Hash::make('12345678'); // TODO - Implementar envio de senha para o e-mail do profissional
+            } else {
+                $user->password = Hash::make($request->password);
+            }
 
             if (!is_null($request->file('profile_picture')))
                 $user->profile_picture = $this->_saveProfilePic($request, $request->name);

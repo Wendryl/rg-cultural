@@ -29,7 +29,10 @@ class User extends Authenticatable
         'neighborhood',
         'city',
         'uf',
-        'type'
+        'type',
+        'facebook',
+        'instagram',
+        'twitter'
     ];
 
     /**
