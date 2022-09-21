@@ -16,7 +16,9 @@
   </div>
 </div>
 <div class="bg-white p-3 mb-3">
-  <form>
+  <form action="/new-user" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="created_by" value="admin">
+    @csrf
     <div class="row mb-2">
       <div class="col-6">
         <h4 class="fw-bold">Informações pessoais</h4>

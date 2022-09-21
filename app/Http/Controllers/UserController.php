@@ -124,7 +124,7 @@ class UserController extends Controller
             $user->save();
 
             if ($request->created_by == 'admin')
-                return back()->with('message', 'Usuário cadastrado sucesso!');
+                return redirect('admin')->with('message', 'Usuário cadastrado sucesso!');
 
             if ($request->isMethod('post'))
                 return redirect('login')->with('message', 'Usuário cadastrado sucesso!');
