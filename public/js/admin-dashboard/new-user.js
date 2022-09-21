@@ -59,5 +59,13 @@ window.setProfilePicture = function (event, previewSelector) {
     document.querySelector(previewSelector).src = img;
   }
 };
+
+window.setCategories = function (categories) {
+  var $select = $('#categories').selectize();
+  var selectize = $select[0].selectize;
+  selectize.setValue(categories.map(function (p) {
+    return p.category_id;
+  }));
+};
 /******/ })()
 ;

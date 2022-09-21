@@ -134,10 +134,10 @@ class UserController extends Controller
 
             if (!is_null($request->gallery_pictures)) {
                 foreach($request->gallery_pictures as $i => $pic) {
-                    new GalleryPicture([
+                    (new GalleryPicture([
                         'user_id' => $user->id,
                         'url' => $this->_saveGalleryPic($pic, $user->name)
-                    ]);
+                    ]))->save();
                 }
             }
 
@@ -238,9 +238,12 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(int $user_id)
     {
-        //
+        return view('admin-dashboard/edit-user', [
+            'user' => User::find($user_id),
+            'categories' => Category::all()
+        ]);
     }
 
     /**

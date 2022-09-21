@@ -60,4 +60,14 @@ class User extends Authenticatable
             return "$this->street, Nº $this->number - $this->city";
         return '-';
     }
+
+    public function gallery_pictures()
+    {
+        return $this->hasMany(GalleryPicture::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Activity::class);
+    }
 }

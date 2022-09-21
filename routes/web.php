@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/new-user', [UserController::class, 'create']);
     Route::post('/new-user', [UserController::class, 'storeSite']);
 
+    Route::get('/edit-user/{id}', [UserController::class, 'edit']);
     Route::put('/update', [UserController::class, 'updateSite']);
     Route::put('/update/{id}', [UserController::class, 'updateSite']);
     Route::delete('/{id}', [UserController::class, 'destroySite']);

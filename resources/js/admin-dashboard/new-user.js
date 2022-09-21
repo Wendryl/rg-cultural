@@ -59,3 +59,10 @@ window.setProfilePicture = (event, previewSelector) => {
     document.querySelector(previewSelector).src = img;
   }
 }
+
+window.setCategories = (categories) => {
+  const $select = $('#categories').selectize();
+  const selectize = $select[0].selectize;
+
+  selectize.setValue(categories.map(p => p.category_id));
+}
