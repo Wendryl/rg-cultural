@@ -309,6 +309,15 @@ class UserController extends Controller
 
             $user->save();
 
+            if (!is_null($request->gallery_pictures)) {
+                foreach($request->gallery_pictures as $i => $pic) {
+                    (new GalleryPicture([
+                        'user_id' => $user->id,
+                        'url' => $this->_saveGalleryPic($pic, $user->name)
+                    ]))->save();
+                }
+            }
+
             if ($request->created_by == 'admin')
                 return back()->with('message', 'Usuário atualizado sucesso!');
 
