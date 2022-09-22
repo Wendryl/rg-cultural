@@ -91,24 +91,25 @@
 </div>
 <!-- Delete Modal HTML -->
 <div id="deleteUserModal" class="modal fade">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <form method="POST">
-      @csrf
-      @method('DELETE')
-      <div class="modal-header">
-        <h4 class="modal-title">Deletar usuário</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p class="confirm-message"></p>
-        <p class="text-danger"><small>Esta ação não pode ser desfeita</small></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
-        <input type="submit" class="btn btn-danger" value="Deletar">
-      </div>
-    </form>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="POST">
+        @csrf
+        @method('DELETE')
+        <div class="modal-header">
+          <h4 class="modal-title">Deletar usuário</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="confirm-message"></p>
+          <p class="text-danger"><small>Esta ação não pode ser desfeita</small></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+          <input type="submit" class="btn btn-danger" value="Deletar">
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 @endsection
