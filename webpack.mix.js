@@ -27,3 +27,5 @@ mix.js('resources/js/admin-dashboard/index', 'public/js/admin-dashboard')
 
 mix.js('resources/js/admin-dashboard/new-user', 'public/js/admin-dashboard')
   .postCss('resources/css/admin-dashboard/new-user.css', 'public/css/admin-dashboard');
+
+mix.js('resources/js/admin-dashboard/edit-user', 'public/js/admin-dashboard');

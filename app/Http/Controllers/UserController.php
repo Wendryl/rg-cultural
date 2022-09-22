@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Cookie;
 
@@ -504,6 +505,19 @@ class UserController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function deleteUserPicture(int $pic_id)
+    {
+        $pic = GalleryPicture::find($pic_id);
+        if (is_null($pic))
+            return back()->with('error', 'Imagem não encontrada!');
+
+        Storage::disk('public')->delete($pic->url);
+
+        $pic->delete();
+
+        return back()->with('message', 'Imagem excluída com sucesso!');
     }
 
     private function _saveProfilePic(Request $request, $user_name): string

@@ -84,6 +84,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/update', [UserController::class, 'updateSite']);
     Route::put('/update/{id}', [UserController::class, 'updateSite']);
     Route::delete('/{id}', [UserController::class, 'destroySite']);
+    Route::delete('/user-gallery/{pic_id}', [UserController::class, 'deleteUserPicture']);
 
     Route::get('/logout', [UserController::class, 'logoutSite']);
 });
