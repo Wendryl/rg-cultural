@@ -300,8 +300,13 @@ class UserController extends Controller
             $user['number'] = $request->input('number') ?? null;
             $user['neighborhood'] = $request->input('neighborhood') ?? null;
             $user['city'] = $request->input('city') ?? null;
+            $user['facebook'] = $request->facebook ?? null;
+            $user['instagram'] = $request->instagram ?? null;
+            $user['twitter'] = $request->twitter ?? null;
+
             if (!is_null($request->profile_picture))
                 $user['profile_picture'] = $this->_saveProfilePic($request, $user->name);
+
             $user->save();
 
             if ($request->created_by == 'admin')
