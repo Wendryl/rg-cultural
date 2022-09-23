@@ -1,10 +1,12 @@
+let selectize = null;
+
 window.onload = () => {
   initializeSelectize();
 }
 
 function initializeSelectize() {
   $(function () {
-    const selectize = $("#categories").selectize({
+    selectize = $("#categories").selectize({
       create: (input) => {
         return {
           value: input,
@@ -61,8 +63,10 @@ window.setProfilePicture = (event, previewSelector) => {
 }
 
 window.setCategories = (categories) => {
-  const $select = $('#categories').selectize();
-  const selectize = $select[0].selectize;
+  setTimeout(() => {
+    const $select = $('#categories').selectize();
+    const selectize = $select[0].selectize;
 
-  selectize.setValue(categories.map(p => p.category_id));
+    selectize.setValue(categories.map(p => p.category_id));
+  }, 500);
 }

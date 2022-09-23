@@ -143,32 +143,7 @@ class UserController extends Controller
             }
 
             if (!is_null($request->user_categories)) {
-                foreach(json_decode($request->user_categories) as $category) {
-                    if (is_numeric($category)) {
-                        $category_name = Category::find($category)->get('name');
-                        $activity = new Activity([
-                            'user_id' => $user->id,
-                            'title' => $category_name,
-                            'category_id' => $category,
-                            'approved' => true,
-                            'type' => 0,
-                        ]);
-
-                        $activity->save();
-                    } else {
-                        $new_category = new Category(['name' => $category]);
-                        $new_category->save();
-                        $activity = new Activity([
-                            'user_id' => $user->id,
-                            'title' => $new_category->name,
-                            'category_id' => $new_category->id,
-                            'approved' => true,
-                            'type' => 0,
-                        ]);
-
-                        $activity->save();
-                    }
-                }
+                $this->_createUserCategories($request->user_categories, $user);
             }
 
             if ($request->created_by == 'admin')
@@ -317,6 +292,10 @@ class UserController extends Controller
                         'url' => $this->_saveGalleryPic($pic, $user->name)
                     ]))->save();
                 }
+            }
+
+            if (!is_null($request->user_categories)) {
+                $this->_createUserCategories($request->user_categories, $user);
             }
 
             if ($request->created_by == 'admin')
@@ -554,5 +533,35 @@ class UserController extends Controller
         if (count($user) > 0)
             throw new Exception('Este e-mail já está sendo utilizado');
 
+    }
+
+    private function _createUserCategories($categories, User $user)
+    {
+        foreach(json_decode($categories) as $category) {
+            if (is_numeric($category)) {
+                $category_name = Category::find($category)->get('name');
+                $activity = new Activity([
+                    'user_id' => $user->id,
+                    'title' => $category_name,
+                    'category_id' => $category,
+                    'approved' => true,
+                    'type' => 0,
+                ]);
+
+                $activity->save();
+            } else {
+                $new_category = new Category(['name' => $category]);
+                $new_category->save();
+                $activity = new Activity([
+                    'user_id' => $user->id,
+                    'title' => $new_category->name,
+                    'category_id' => $new_category->id,
+                    'approved' => true,
+                    'type' => 0,
+                ]);
+
+                $activity->save();
+            }
+        }
     }
 }

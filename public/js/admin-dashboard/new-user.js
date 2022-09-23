@@ -3,13 +3,15 @@ var __webpack_exports__ = {};
 /*!**************************************************!*\
   !*** ./resources/js/admin-dashboard/new-user.js ***!
   \**************************************************/
+var selectize = null;
+
 window.onload = function () {
   initializeSelectize();
 };
 
 function initializeSelectize() {
   $(function () {
-    var selectize = $("#categories").selectize({
+    selectize = $("#categories").selectize({
       create: function create(input) {
         return {
           value: input,
@@ -61,11 +63,13 @@ window.setProfilePicture = function (event, previewSelector) {
 };
 
 window.setCategories = function (categories) {
-  var $select = $('#categories').selectize();
-  var selectize = $select[0].selectize;
-  selectize.setValue(categories.map(function (p) {
-    return p.category_id;
-  }));
+  setTimeout(function () {
+    var $select = $('#categories').selectize();
+    var selectize = $select[0].selectize;
+    selectize.setValue(categories.map(function (p) {
+      return p.category_id;
+    }));
+  }, 500);
 };
 /******/ })()
 ;
