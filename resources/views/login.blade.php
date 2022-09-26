@@ -36,7 +36,7 @@
         {{-- </p> --}}
         {{-- TODO - Implementar método de recuperação de senha --}}
         <p class="form__login-link">
-            <a href="{{ url('registrar') }}">Cadastrar</a>
+            <a href="{{ url('register') }}">Cadastrar</a>
         </p>
     </div>
     <button class="form__login-botao" type="submit">Entrar</button>

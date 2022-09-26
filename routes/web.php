@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -55,9 +56,12 @@ Route::middleware('auth')->group(function () {
         return view('user-dashboard/index', ['user' => $user]);
     });
 
-    Route::get('/complete-registration', function () {
+    Route::get('/profile-setup', function () {
         $user = auth()->user();
-        return view('user-dashboard/complete-registration', ['user' => $user]);
+        return view('user-dashboard/profile-setup', [
+            'user' => $user,
+            'categories' => Category::all()
+        ]);
     });
 
     // Admin Routes
