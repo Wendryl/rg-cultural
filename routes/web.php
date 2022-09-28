@@ -58,6 +58,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile-setup', function () {
         $user = auth()->user();
+
+        if ($user->type == 1)
+        return redirect('admin');
+
         return view('user-dashboard/profile-setup', [
             'user' => $user,
             'categories' => Category::all()

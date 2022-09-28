@@ -11,9 +11,9 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
+    <div class="container">
       <a class="navbar-brand" href="/profile-setup">
-        <img id="profile-pic" alt="Sua imagem de perfil." src="{{ $user->profile_picture ?? '/img/profile.png' }}">
+        <img id="profile-pic-thumb" alt="Sua imagem de perfil." src="{{ $user->profile_picture ?? '/img/profile.png' }}">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

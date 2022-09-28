@@ -1,12 +1,12 @@
 {
     "/js/app.js": "/js/app.js",
-    "/js/user-dashboard/complete-registration.js": "/js/user-dashboard/complete-registration.js",
+    "/js/user-dashboard/profile-setup.js": "/js/user-dashboard/profile-setup.js",
     "/js/admin-dashboard/index.js": "/js/admin-dashboard/index.js",
     "/js/admin-dashboard/new-user.js": "/js/admin-dashboard/new-user.js",
     "/js/admin-dashboard/edit-user.js": "/js/admin-dashboard/edit-user.js",
     "/css/admin-dashboard/new-user.css": "/css/admin-dashboard/new-user.css",
     "/css/admin-dashboard/index.css": "/css/admin-dashboard/index.css",
-    "/css/user-dashboard/complete-registration.css": "/css/user-dashboard/complete-registration.css",
+    "/css/user-dashboard/profile-setup.css": "/css/user-dashboard/profile-setup.css",
     "/css/user-dashboard/index.css": "/css/user-dashboard/index.css",
     "/css/app.css": "/css/app.css"
 }

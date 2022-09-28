@@ -1,10 +1,17 @@
 @extends('user-dashboard/dashboard-base')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/user-dashboard/index.css') }}">
-<link rel="stylesheet" href="{{ asset('css/user-dashboard/complete-registration.css') }}">
+<link rel="stylesheet" href="{{ asset('css/user-dashboard/profile-setup.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/css/selectize.bootstrap5.css" integrity="sha512-wD3+yEMEGhx4+wKKWd0bNGCI+fxhDsK7znFYPvf2wOVxpr7gWnf4+BKphWnUCzf49AUAF6GYbaCBws1e5XHSsg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/css/selectize.default.min.css" integrity="sha512-vKflY6VSoNmvZitwWFIKY6r8j1R8DJwAoM25PFH2EzF49j9gka2gNYMAf31y0Ct++phlsyJSX+9zi/vO1aSSdw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 @endpush
 @push('scripts')
-<script src="{{ asset('js/user-dashboard/complete-registration.js') }}"></script>
+<script src="{{ asset('js/user-dashboard/profile-setup.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/js/standalone/selectize.min.js" integrity="sha512-pgmLgtHvorzxpKra2mmibwH/RDAVMlOuqU98ZjnyZrOZxgAR8hwL8A02hQFWEK25V40/9yPYb/Zc+kyWMplgaA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer>
+  setCategories({!! $user->categories !!});
+</script>
 @endpush
 @section('body')
   <form action="/update/{{ $user->id }}" method="POST" enctype="multipart/form-data" class="pt-4">
@@ -12,7 +19,7 @@
     @method('PUT')
     @csrf
     <div class="row mb-2">
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <h4 class="fw-bold">Informações pessoais</h4>
         <div>
           <div class="d-flex gap-4 align-items-center">
@@ -73,7 +80,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <h4 class="fw-bold">Contato</h4>
         <div class="mb-2">
           <label for="phone" class="form-label">Telefone*</label>
@@ -124,7 +131,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <h4 class="fw-bold">Galeria</h4>
         <div class="d-flex gap-2">
           <input
@@ -162,7 +169,7 @@
           @endforeach
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <h4 class="fw-bold">Localização</h4>
         <div class="mb-2">
           <label for="city" class="form-label">Cidade*</label>
@@ -188,7 +195,7 @@
               />
         </div>
         <div class="mb-2 row">
-          <div class="col-10">
+          <div class="col-8 col-md-10">
             <label for="street" class="form-label">Endereço</label>
             <input
                 type="text"
@@ -199,7 +206,7 @@
                 value="{{ $user->street }}"
                 />
           </div>
-          <div class="col-2">
+          <div class="col-4 col-md-2">
             <label for="number" class="form-label">Número</label>
             <input
                 type="text"
