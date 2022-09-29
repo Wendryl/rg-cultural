@@ -299,7 +299,7 @@ class UserController extends Controller
             }
 
             if ($request->created_by == 'admin')
-                return back()->with('message', 'Usuário atualizado sucesso!');
+                return back()->with('message', 'Usuário atualizado com sucesso!');
 
             return redirect('completar-cadastro')->with('message', 'Usuário atualizado com sucesso!');
 
