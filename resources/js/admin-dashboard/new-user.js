@@ -17,6 +17,12 @@ function initializeSelectize() {
         option_create: function(data, escape) {
           return '<div class="create">Adicionar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
         }
+      },
+      onDelete: (e) => {
+        const categoryId = parseInt(e[0]);
+        const form = document.querySelector('#delete-category-form');
+        form.setAttribute('action', `/user-category/${categoryId}`);
+        form.submit();
       }
     });
 

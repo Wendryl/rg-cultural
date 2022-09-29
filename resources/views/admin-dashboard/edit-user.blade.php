@@ -235,5 +235,10 @@
     @csrf
     @method('DELETE')
   </form>
+  <form method="POST" id="delete-category-form">
+    <input type="hidden" name="user_id" value="{{ $user->id }}">
+    @csrf
+    @method('DELETE')
+  </form>
 </div>
 @endsection

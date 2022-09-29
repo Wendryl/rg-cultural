@@ -93,6 +93,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/update/{id}', [UserController::class, 'updateSite']);
     Route::delete('/{id}', [UserController::class, 'destroySite']);
     Route::delete('/user-gallery/{pic_id}', [UserController::class, 'deleteUserPicture']);
+    Route::delete('/user-category/{category_id}', [UserController::class, 'deleteUserCategory']);
 
     Route::get('/logout', [UserController::class, 'logoutSite']);
 });

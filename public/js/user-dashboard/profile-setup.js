@@ -22,6 +22,12 @@ function initializeSelectize() {
         option_create: function option_create(data, escape) {
           return '<div class="create">Adicionar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
         }
+      },
+      onDelete: function onDelete(e) {
+        var categoryId = parseInt(e[0]);
+        var form = document.querySelector('#delete-category-form');
+        form.setAttribute('action', "/user-category/".concat(categoryId));
+        form.submit();
       }
     });
     selectize.on('change', function () {

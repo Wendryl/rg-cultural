@@ -10,6 +10,7 @@ use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -301,12 +302,12 @@ class UserController extends Controller
             if ($request->created_by == 'admin')
                 return back()->with('message', 'Usuário atualizado com sucesso!');
 
-            return redirect('completar-cadastro')->with('message', 'Usuário atualizado com sucesso!');
+            return back()->with('message', 'Usuário atualizado com sucesso!');
 
         } catch (Exception $e) {
             Log::error($e->getTraceAsString());
             Log::error($e->getMessage());
-            return redirect('completar-cadastro')->with('error', 'Erro ao atualizar o usuário!');
+            return back()->with('error', 'Erro ao atualizar o usuário!');
         }
     }
 
@@ -497,6 +498,20 @@ class UserController extends Controller
         $pic->delete();
 
         return back()->with('message', 'Imagem excluída com sucesso!');
+    }
+
+    public function deleteUserCategory(int $category_id, Request $request)
+    {
+        try {
+            $user_id = $request->user_id;
+            $user_activity = Activity::where('user_id', $user_id)->where('category_id', $category_id);
+            $user_activity->delete();
+            return back()->with('message', 'Categoria removida!');
+
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return back()->with('error', 'Erro ao deletar categoria do usuário!');
+        }
     }
 
     private function _saveProfilePic(Request $request, $user_name): string

@@ -15,7 +15,6 @@
 @endpush
 @section('body')
   <form action="/update/{{ $user->id }}" method="POST" enctype="multipart/form-data" class="pt-4">
-    <input type="hidden" name="created_by" value="admin">
     @method('PUT')
     @csrf
     <div class="row mb-2">
@@ -226,6 +225,11 @@
     </div>
   </form>
   <form method="POST" id="delete-pic-form">
+    @csrf
+    @method('DELETE')
+  </form>
+  <form method="POST" id="delete-category-form">
+    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
     @csrf
     @method('DELETE')
   </form>
