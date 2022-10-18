@@ -9,7 +9,7 @@
         <div class='chamada__bg-image'></div>
 
         <div class="chamada__texto-container">
-            <h1 class='chamada__titulo'>RG Taubaté</h1>
+            <h1 class='chamada__titulo'>RG Cultural</h1>
             <h2 class='chamada__subtitulo'>Catálogo de Artistas de Taubaté</h2>
 
             <p class="chamada__texto">Um site pensado para você artista que mora na cidade de Taubaté.</p>
