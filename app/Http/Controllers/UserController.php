@@ -556,14 +556,13 @@ class UserController extends Controller
             $stored_category = Category::firstOrCreate([
                 'name' => $category_name
             ]);
-            $activity = new Activity([
+            Activity::firstOrCreate([
                 'user_id' => $user->id,
                 'title' => $category_name,
                 'category_id' => $stored_category->id,
                 'approved' => true,
                 'type' => 0,
             ]);
-            $activity->save();
         }
     }
 }
