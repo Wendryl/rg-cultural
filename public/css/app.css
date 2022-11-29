@@ -232,6 +232,10 @@
     max-width: 300px;
 }
 
+.regua_fatec-cidade {
+    max-width: 100px;
+}
+
 @media screen and (min-width: 768px) {
     .rodape__social {
         flex-flow: row wrap;
