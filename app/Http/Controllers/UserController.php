@@ -500,11 +500,11 @@ class UserController extends Controller
         return back()->with('message', 'Imagem excluída com sucesso!');
     }
 
-    public function deleteUserCategory(int $category_id, Request $request)
+    public function deleteUserCategory(string $category_name, Request $request)
     {
         try {
             $user_id = $request->user_id;
-            $user_activity = Activity::where('user_id', $user_id)->where('category_id', $category_id);
+            $user_activity = Activity::where('user_id', $user_id)->where('title', $category_name);
             $user_activity->delete();
             return back()->with('message', 'Categoria removida!');
 
@@ -552,31 +552,18 @@ class UserController extends Controller
 
     private function _createUserCategories($categories, User $user)
     {
-        foreach(json_decode($categories) as $category) {
-            if (is_numeric($category)) {
-                $category_name = Category::find($category)->get('name');
-                $activity = new Activity([
-                    'user_id' => $user->id,
-                    'title' => $category_name,
-                    'category_id' => $category,
-                    'approved' => true,
-                    'type' => 0,
-                ]);
-
-                $activity->save();
-            } else {
-                $new_category = new Category(['name' => $category]);
-                $new_category->save();
-                $activity = new Activity([
-                    'user_id' => $user->id,
-                    'title' => $new_category->name,
-                    'category_id' => $new_category->id,
-                    'approved' => true,
-                    'type' => 0,
-                ]);
-
-                $activity->save();
-            }
+        foreach(json_decode($categories) as $category_name) {
+            $stored_category = Category::firstOrCreate([
+                'name' => $category_name
+            ]);
+            $activity = new Activity([
+                'user_id' => $user->id,
+                'title' => $category_name,
+                'category_id' => $stored_category->id,
+                'approved' => true,
+                'type' => 0,
+            ]);
+            $activity->save();
         }
     }
 }

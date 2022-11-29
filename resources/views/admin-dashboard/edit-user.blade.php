@@ -78,7 +78,7 @@
                 placeholder="Insira as categorias"
                 >
               @foreach ($categories as $category)
-                <option value="{{ $category->id }}">
+                <option value="{{ $category->name }}">
                 {{ $category->name }}
                 </option>
               @endforeach

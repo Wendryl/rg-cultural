@@ -19,9 +19,9 @@ function initializeSelectize() {
         }
       },
       onDelete: (e) => {
-        const categoryId = parseInt(e[0]);
+        const categoryName = e[0];
         const form = document.querySelector('#delete-category-form');
-        form.setAttribute('action', `/user-category/${categoryId}`);
+        form.setAttribute('action', `/user-category/${categoryName}`);
         form.submit();
       }
     });
@@ -73,6 +73,6 @@ window.setCategories = (categories) => {
     const $select = $('#categories').selectize();
     const selectize = $select[0].selectize;
 
-    selectize.setValue(categories.map(p => p.category_id));
+    selectize.setValue(categories.map(p => p.title));
   }, 500);
 }

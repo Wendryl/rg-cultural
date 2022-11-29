@@ -24,9 +24,9 @@ function initializeSelectize() {
         }
       },
       onDelete: function onDelete(e) {
-        var categoryId = parseInt(e[0]);
+        var categoryName = e[0];
         var form = document.querySelector('#delete-category-form');
-        form.setAttribute('action', "/user-category/".concat(categoryId));
+        form.setAttribute('action', "/user-category/".concat(categoryName));
         form.submit();
       }
     });
@@ -73,7 +73,7 @@ window.setCategories = function (categories) {
     var $select = $('#categories').selectize();
     var selectize = $select[0].selectize;
     selectize.setValue(categories.map(function (p) {
-      return p.category_id;
+      return p.title;
     }));
   }, 500);
 };
