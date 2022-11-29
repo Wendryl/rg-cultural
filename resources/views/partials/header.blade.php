@@ -1,7 +1,7 @@
 <header class='cabecalho__principal'>
     <div class="container">
         <h1 class='cabecalho__titulo'>
-            <a href="{{ url('index') }}" >RG Cultural</a>
+            <a href="{{ url('') }}" >RG Cultural</a>
         </h1>
         <nav>
             <ul class='cabecalho__principal-nav'>
