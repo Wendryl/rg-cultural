@@ -36,9 +36,9 @@
 
                 <p class="item__texto">Pode se manter sempre atualizado sobre seu artista favorito.</p>
             </li>
-            <!-- <li style='margin: 70px 0;'> -->
-            <!--     <a href="{{ url('descobrir') }}" class='descubra-mais__botao'>Descubra Mais</a> -->
-            <!-- </li> -->
+            <li style='margin: 70px 0;'>
+                <a href="{{ url('descobrir') }}" class='descubra-mais__botao'>Descubra Mais</a>
+            </li>
         </ul>
     </section>
 @endsection
