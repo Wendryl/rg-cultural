@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Models\Category;
+use App\Models\CulturalColumn;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -35,8 +36,8 @@ Route::get('/register', function () {
 
 Route::post('/register', [UserController::class, 'storeSite']);
 
-Route::get('/discover', function () {
-    return view('descobrir');
+Route::get('/blog', function () {
+    return view('blog');
 });
 
 Route::get('/about', function () {
@@ -83,6 +84,16 @@ Route::middleware('auth')->group(function () {
         return redirect('home');
 
         return view('admin-dashboard/index', ['users' => $users]);
+    });
+
+    Route::get('/posts', function(Request $request) {
+        $search_param = $request->query('s');
+        if (!is_null($search_param)) {
+            $posts =  CulturalColumn::find('name', $search_param)->paginate(15);
+        } else {
+            $posts = CulturalColumn::all();
+        }
+        return view('admin-dashboard/posts', ['posts' => $posts]);
     });
 
     Route::get('/new-user', [UserController::class, 'create']);

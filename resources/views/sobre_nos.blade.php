@@ -1,6 +1,8 @@
-@extends('templateIndex_head'); @section('head')
+@extends('templateIndex_head')
+@section('head')
 <title>Sobre Nós</title>
-@endsection @section('body')
+@endsection
+@section('body')
 <div class="card">
     <h1>Equipe FATEC</h1>
     <h4>Kaio Santos</h4>
@@ -20,8 +22,8 @@
         Desenvolvedor de Sistemas e estudante de Análise e Desenvolvimento de
         Sistemas na Faculdade de Tecnologia de Taubaté. Possui experiência no
         desenvolvimento de sistemas web arquitetura MVC, REST API's e Single
-        Page Applications. Atualmente trabalha como desenvolvedor Front-end na
-        empresa Lean Tech e é responsável pelo desenvolvimento de API e
+        Page Applications. Atualmente trabalha como desenvolvedor Front-end
+        e é responsável pelo desenvolvimento de API e
         integração do projeto RG Cultural.
     </p>
     <h4>Professor Ronaldo Emerick Moreira</h4>

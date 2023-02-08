@@ -14,4 +14,8 @@ class CulturalColumn extends Model
         'img_url',
         'biography'
     ];
+
+    public function author() {
+        return $this->belongsTo(User::class);
+    }
 }
