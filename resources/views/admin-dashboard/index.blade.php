@@ -1,4 +1,10 @@
 @extends('admin-dashboard/dashboard-base')
+@section('search_form_action')
+  /admin
+@endsection
+@section('search_placeholder')
+  Buscar usuário
+@endsection
 @section('body')
 @push('scripts')
 <script src="{{ asset('js/admin-dashboard/index.js') }}"></script>
@@ -16,7 +22,7 @@
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.25a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z" clip-rule="evenodd" />
             </svg>
             <span>
-              Adicionar novo usuário
+              Adicionar nova usuário
             </span>
           </a>
         </div>

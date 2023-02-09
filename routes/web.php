@@ -89,9 +89,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts', function(Request $request) {
         $search_param = $request->query('s');
         if (!is_null($search_param)) {
-            $posts =  CulturalColumn::find('name', $search_param)->paginate(15);
+            $posts = CulturalColumn::paginate(15)->where("title", "like", "%$search_param%");
         } else {
-            $posts = CulturalColumn::all();
+            $posts = CulturalColumn::paginate(15);
         }
         return view('admin-dashboard/posts', ['posts' => $posts]);
     });

@@ -28,8 +28,8 @@
                 <a class="nav-link" href="/logout">Logout</a>
               </li>
             </ul>
-            <form class="d-flex" role="search" action="/admin">
-              <input class="form-control me-2" type="search" name="s" placeholder="Buscar usuário" aria-label="Buscar usuário">
+            <form class="d-flex" role="search" action="@yield('search_form_action')">
+              <input class="form-control me-2" type="search" name="s" placeholder="@yield('search_placeholder')" aria-label="@yield('search_placeholder')">
               <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
             </form>
           </div>
