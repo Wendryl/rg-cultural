@@ -11,8 +11,6 @@ body {
 main {
     margin: 0 auto;
     max-width: 1400px;
-
-    width: 100vw;
 }
 
 @media screen and (min-width: 768px) {
@@ -70,10 +68,7 @@ main {
         max-width: 100%;
         margin: 0;
         padding: 30px 0;
-
-        width: 100vw;
         height: 400px;
-
         font-size: 2rem;
     }
 
