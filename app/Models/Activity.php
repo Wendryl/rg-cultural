@@ -11,7 +11,7 @@ class Activity extends Model
 
     protected $fillable = [
         'user_id',
-        'category_id',
+        'sub_category_id',
         'title',
         'description',
         'value',

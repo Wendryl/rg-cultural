@@ -559,7 +559,7 @@ class UserController extends Controller
             Activity::firstOrCreate([
                 'user_id' => $user->id,
                 'title' => $category_name,
-                'category_id' => $stored_category->id,
+                'sub_category_id' => $stored_category->id,
                 'approved' => true,
                 'type' => 0,
             ]);
