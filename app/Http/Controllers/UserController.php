@@ -52,7 +52,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin-dashboard/new-user', [
+        return view('admin-dashboard.users.new-user', [
             'categories' => Category::all()
         ]);
     }
@@ -217,7 +217,7 @@ class UserController extends Controller
      */
     public function edit(int $user_id)
     {
-        return view('admin-dashboard/edit-user', [
+        return view('admin-dashboard.users.edit-user', [
             'user' => User::find($user_id),
             'categories' => Category::all()
         ]);
