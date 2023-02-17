@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CulturalColumnController;
 use App\Models\Category;
 use App\Models\CulturalColumn;
 use App\Models\User;
@@ -93,11 +94,14 @@ Route::middleware('auth')->group(function () {
         } else {
             $posts = CulturalColumn::paginate(15);
         }
-        return view('admin-dashboard/posts', ['posts' => $posts]);
+        return view('admin-dashboard.posts.index', ['posts' => $posts]);
     });
 
     Route::get('/new-user', [UserController::class, 'create']);
     Route::post('/new-user', [UserController::class, 'storeSite']);
+
+    Route::get('/new-post', [CulturalColumnController::class, 'create']);
+    Route::post('/new-post', [CulturalColumnController::class, 'storeSite']);
 
     Route::get('/edit-user/{id}', [UserController::class, 'edit']);
     Route::put('/update', [UserController::class, 'updateSite']);

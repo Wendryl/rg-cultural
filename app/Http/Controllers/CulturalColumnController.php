@@ -33,6 +33,7 @@ class CulturalColumnController extends Controller
 
     public function create(Request $request)
     {
+        return view('admin-dashboard.posts.new');
     }
 
     public function store(Request $request)
