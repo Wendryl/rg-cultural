@@ -1,0 +1,56 @@
+.profile-thumb {
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card {
+  display: flex;
+  gap: 15px;
+  max-width: 500px !important;
+  transition: transform 50ms ease-in;
+}
+
+.card svg {
+  width: 15px;
+  display: inline;
+}
+
+.card div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+h5 {
+  font-size: 1.5rem !important;
+}
+
+.card a {
+  background: var(--fonte-link);
+  color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  width: max-content;
+}
+
+.tags {
+  flex-direction: row !important;
+  justify-content: start !important;
+}
+
+.tag {
+  font-size: .85rem;
+  background: #aaaaaa;
+  border-radius: 3px;
+  color: #fff;
+  padding: 5px;
+  display: inline-block;
+}

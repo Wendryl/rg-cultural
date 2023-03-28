@@ -34,9 +34,9 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/admin">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/posts">Posts</a>
-              </li>
+              {{-- <li class="nav-item"> --}}
+              {{--   <a class="nav-link active" aria-current="page" href="/posts">Posts</a> --}}
+              {{-- </li> --}}
               <li class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>
               </li>

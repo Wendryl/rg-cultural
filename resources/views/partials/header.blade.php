@@ -6,7 +6,7 @@
         <nav>
             <ul class='cabecalho__principal-nav'>
                 <li><a href="{{ url('') }}" class='cabecalho__principal-nav-link'>Inicio</a></li>
-                <li><a href="{{ url('blog') }}" class='cabecalho__principal-nav-link'>Blog</a></li>
+                <li><a href="{{ url('find-professionals') }}" class='cabecalho__principal-nav-link'>Encontre Profissionais</a></li>
                 <li><a href="{{ url('about') }}" class='cabecalho__principal-nav-link'>Sobre Nós</a></li>
                 <li><a href="{{ url('login') }}" class='cabecalho__principal-nav-link'>Entrar</a></li>
                 <li><a href="{{ url('register') }}" class='cabecalho__principal-nav-link'>Registrar</a></li>

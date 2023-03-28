@@ -17,7 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
     ]);
 
 mix.styles('resources/css/*', 'public/css/app.css')
-  .postCss('resources/css/user-dashboard/index.css', 'public/css/user-dashboard');
+  .postCss('resources/css/user-dashboard/index.css', 'public/css/user-dashboard');;
 
 mix.js('resources/js/user-dashboard/profile-setup', 'public/js/user-dashboard')
   .postCss('resources/css/user-dashboard/profile-setup.css', 'public/css/user-dashboard');

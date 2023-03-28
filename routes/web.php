@@ -37,8 +37,25 @@ Route::get('/register', function () {
 
 Route::post('/register', [UserController::class, 'storeSite']);
 
-Route::get('/blog', function () {
-    return view('blog');
+Route::get('/find-professionals', function (Request $request) {
+    $curr_user = auth()->user();
+
+    $search_param = $request->query('s');
+    if (!is_null($search_param)) {
+        $users = User::paginate(15)->where("name", "like", "%$search_param");
+        /* $users = DB::table('users') */
+        /* ->join('activities', 'users.id', '=', 'activities.user_id') */
+        /* ->select('users.*', 'activities.title') */
+        /* ->where("name", 'like', "%$search_param%")->orderByDesc('created_at')->paginate(15); */
+    } else {
+        $users = User::paginate(15);
+        /* $users = DB::table('users') */
+        /* ->join('activities', 'users.id', '=', 'activities.user_id') */
+        /* ->select('users.*', 'activities.title') */
+        /* ->orderByDesc('created_at')->paginate(15); */
+    }
+
+    return view('profissionais', ['professionals' => $users]);
 });
 
 Route::get('/about', function () {
