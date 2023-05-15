@@ -14,7 +14,7 @@
       </span>
     @endif
     <h1 class="form__login-titulo">Entrar</h1>
-    <h2 class="form__login-user">Usuario:</h2>
+    <h2 class="form__login-user">E-mail:</h2>
     <input
         class="form__login-input-user"
         type="email"
