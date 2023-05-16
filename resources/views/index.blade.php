@@ -31,12 +31,12 @@
             </li>
             <div class='linha__separadora'></div>
 
-            <li class="descubra__lista-item descubra__lista-item--usuario">
+            <li class="descubra__lista-item descubra__lista-item--usuario" style="display: none;">
                 <h2 class="item__titulo">Você Usuario:</h2>
 
                 <p class="item__texto">Pode se manter sempre atualizado sobre seu artista favorito.</p>
             </li>
-            <li style='margin: 70px 0;'>
+            <li style='margin: 70px 0; display: none;'>
                 <a href="{{ url('descobrir') }}" class='descubra-mais__botao'>Descubra Mais</a>
             </li>
         </ul>
