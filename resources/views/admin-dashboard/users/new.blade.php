@@ -126,7 +126,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-6 d-none">
         <h4 class="fw-bold">Galeria</h4>
         <div class="d-flex gap-2">
           <input
