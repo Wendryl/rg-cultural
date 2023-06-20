@@ -1,6 +1,6 @@
 # RG Cultural - Sistema para cadastro de profissionais do ramo cultural
 Este projeto foi utilizado como Trabalho de Graduação (TG) para o curso de tecnologia em Análise e Desenvolvimento de Sistemas na [Faculdade de Tecnologia de Taubaté](https://fatectaubate.edu.br/).
-A monografia produzida com base neste trabalho encontra-se neste repositório através do seguinte link:
+A monografia produzida com base neste trabalho encontra-se neste repositório através do seguinte link: [monografia-rg-cultural.pdf](https://github.com/Wendryl/rg-cultural/raw/master/monografia-rg-cultural).
 Ela contém todas as informações importantes como tecnologias utilizadas, proposta do projeto, diagramas e modelo de banco de dados.
 
 ## Contribuição
